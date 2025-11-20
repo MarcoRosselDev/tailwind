@@ -1,0 +1,28 @@
+
+01_first_steps/node_modules
+hi
+
+# Logs
+01_first_steps/logs
+01_first_steps/*.log
+01_first_steps/npm-debug.log*
+01_first_steps/yarn-debug.log*
+01_first_steps/yarn-error.log*
+01_first_steps/pnpm-debug.log*
+01_first_steps/lerna-debug.log*
+
+01_first_steps/node_modules
+01_first_steps/dist
+01_first_steps/dist-ssr
+01_first_steps/*.local
+
+# Editor directories and files
+01_first_steps/.vscode/*
+01_first_steps/!.vscode/extensions.json
+01_first_steps/.idea
+01_first_steps/.DS_Store
+01_first_steps/*.suo
+01_first_steps/*.ntvs*
+01_first_steps/*.njsproj
+01_first_steps/*.sln
+01_first_steps/*.sw?

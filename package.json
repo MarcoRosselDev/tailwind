@@ -1,0 +1,15 @@
+{
+  "name": "tailwind",
+  "version": "1.0.0",
+  "description": "repositorio de componentes y UI reutilizable",
+  "keywords": [
+    "tailwind"
+  ],
+  "license": "ISC",
+  "author": "Marco Rossel",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
