@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- this is the cdn link of tailwind -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script type="module" src="app.js" defer></script>
+    <title>instalacion de tailwind con cdn</title>
+    <style type="text/tailwindcss">
+      @theme {
+        --color-clifford: #01ff01;
+      }
+    </style>
+</head>
+<body>
+    <button 
+    class="bg-blue-800 text-white p-1 rounded-sm mt-2" 
+    id="button-test">click me</button>
+
+    <h1 class="text-3xl font-bold underline text-clifford">
+      Hello world!
+    </h1>
+</body>
+</html>
