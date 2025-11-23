@@ -9,6 +9,9 @@ function App() {
   return (
     <>
       <div>
+        <h1 className="text-blue-600 hover:text-blue-400 text-3xl font-bold underline">
+          Hello world!
+        </h1>
         <a href="https://vite.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
         </a>
@@ -28,10 +31,6 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
-      <h1 className="text-3xl font-bold underline">Hello world!</h1>
-      <button className="text-white px-4 sm:px-8 py-2 sm:py-3 bg-sky-700 hover:bg-sky-800">
-        Submit
-      </button>
     </>
   );
 }
