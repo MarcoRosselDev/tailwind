@@ -26,3 +26,5 @@ hi
 01_first_steps/*.njsproj
 01_first_steps/*.sln
 01_first_steps/*.sw?
+
+03_colores/one/node_modules
