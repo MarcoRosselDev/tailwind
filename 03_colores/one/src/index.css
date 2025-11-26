@@ -2,4 +2,8 @@
 
 @theme {
   --color-marcus: #3ab7bf;
+  --color-bg: #181818;
+  --color-tx: #fff;
+  --spacing-123: 123px;
+  --width-marc: 197px;
 }
