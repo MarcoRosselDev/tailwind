@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MathML working space</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- fracciones -->
+    <div class="new_div">
+      <h3>Fracciones</h3>
+      <p>
+        The fraction
+        <math display="block">
+          <mfrac>
+            <mn>1</mn>
+            <mn>xasdf3</mn>
+          </mfrac>
+        </math>
+        is not a decimal number.
+      </p>
+    </div>
+    <!-- numeros anidados -->
+    <div class="new_div">
+      <h3>2 Numeros anidados</h3>
+      <p>
+        <math display="block">
+          <mn>1</mn>
+          <mo>+</mo>
+          <mn>2</mn>
+          <mo>+</mo>
+          <mo>+</mo>
+          <mn>3</mn>
+        </math>
+      </p>
+    </div>
+    <!-- numeros anidados en una fraccion -->
+    <div class="new_div">
+      <h3>3 Numeros anidados en una fraccion</h3>
+      <math display="block">
+        <mfrac>
+          <mrow>
+            <mn>1</mn>
+            <mo>+</mo>
+            <mn>2</mn>
+          </mrow>
+          <mn>3</mn>
+        </mfrac>
+      </math>
+    </div>
+  </body>
+</html>

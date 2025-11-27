@@ -1,0 +1,7 @@
+.new_div{
+  border-top: 1px solid rgba(0, 0, 255, 0.426);
+}
+body{
+  background-color: rgba(0, 0, 0, 0.85);
+  color: rgb(184, 190, 191);
+}
