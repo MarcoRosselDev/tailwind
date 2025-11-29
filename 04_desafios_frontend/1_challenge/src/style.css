@@ -1,0 +1,29 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary-red: rgb(246, 83, 81); /* Red 500: hsl(1, 90%, 64%) */
+  --color-primary-blue: hsl(219, 85%, 26%);
+  --color-neutral-white: hsl(0, 100%, 100%);
+  --color-neutral-Navy-50 :  hsl(210, 60%, 98%);
+  --color-neutral-Blue :  hsl(211, 68%, 94%);
+  --color-neutral-Navy-100 :  hsl(205, 33%, 90%);
+  --color-neutral-Gray-500 :  hsl(219, 14%, 63%);
+  --color-neutral-Gray-600 :  hsl(219, 12%, 42%);
+  --color-neutral-Navy-950 :  hsl(224, 21%, 14%);
+}
+
+/* this part come from deepseek help */
+@font-face {
+  font-family: 'MiFuente';
+  src: url('../public/fonts/PlusJakartaSans-VariableFont_wght.ttf') format('ttf'),
+       url('../public/fonts/static/PlusJakartaSans-ExtraBold.ttf') format('ttf'),
+       url('../public/fonts/static/PlusJakartaSans-Medium.ttf') format('ttf');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap; /* Mejora el rendimiento de carga */
+}
+
+/* Usar la fuente en tu CSS */
+body {
+  font-family: 'MiFuente', Arial, sans-serif;
+}
