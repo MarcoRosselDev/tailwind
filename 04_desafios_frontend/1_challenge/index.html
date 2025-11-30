@@ -7,16 +7,64 @@
     <title>1_challenge</title>
   </head>
   <body>
-    <div class="border border-blue-400">
-      Notifications 3 Mark all as read Mark Webber reacted to your recent post
-      My first tournament today! 1m ago Angela Gray followed you 5m ago Jacob
-      Thompson has joined your group Chess Club 1 day ago Rizky Hasanuddin sent
-      you a private message 5 days ago Hello, thanks for setting up the Chess
-      Club. I've been a member for a few weeks now and I'm already having lots
-      of fun and improving my game. Kimberly Smith commented on your picture 1
-      week ago Nathan Peterson reacted to your recent post 5 end-game strategies
-      to increase your win rate 2 weeks ago Anna Kim left the group Chess Club 2
-      weeks ago
+    <div class="font-medium bg-neutral-Navy-100">
+      <div
+        class="border p-3 bg-neutral-white border-red-500 gap-2 flex flex-col"
+      >
+        <!-- header -->
+        <div class="flex justify-between pb-3">
+          <h1 class="font-bold">
+            Notifications
+            <span
+              class="bg-primary-blue pl-2 pr-2 p-0.5 rounded-sm text-neutral-white"
+              >3</span
+            >
+          </h1>
+          <p class="text-neutral-Gray-600">Mark all as read</p>
+        </div>
+        <!-- targetas -->
+        <div class="bg-neutral-Navy-100 p-3 rounded-lg flex">
+          <img
+            src="public/images/avatar-mark-webber.webp"
+            alt="usuarios image"
+            class="w-9 h-9"
+          />
+          <div class="ml-3">
+            <p>
+              <span class="font-bold">Mark Webber</span>
+              <span class="text-neutral-Gray-600"
+                >reacted to your recent post</span
+              >
+              My first tournament today!
+              <span
+                class="bg-primary-red w-2.5 h-2.5 absolute mt-1.5 ml-2 rounded-full"
+              ></span>
+            </p>
+            <span class="text-neutral-Gray-500">1m ago</span>
+          </div>
+        </div>
+        <div class="border border-blue-700">
+          Angela Gray followed you 5m ago
+        </div>
+        <div class="border border-blue-700">
+          Jacob Thompson has joined your group Chess Club 1 day ago
+        </div>
+        <div class="border border-blue-700">
+          Rizky Hasanuddin sent you a private message 5 days ago Hello, thanks
+          for setting up the Chess Club. I've been a member for a few weeks now
+          and I'm already having lots of fun and improving my game.
+        </div>
+        <div class="border border-blue-700">
+          Kimberly Smith commented on your picture 1 week ago
+        </div>
+        <div class="border border-blue-700">
+          Nathan Peterson reacted to your recent post 5 end-game strategies to
+          increase your win rate 2 weeks ago
+        </div>
+        <div class="border border-blue-700">
+          Anna Kim left the group Chess Club 2 weeks ago
+        </div>
+      </div>
     </div>
     <div id="app"></div>
     <script type="module" src="/src/main.js"></script>
