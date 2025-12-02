@@ -7,24 +7,30 @@
     <title>1_challenge</title>
   </head>
   <body>
-    <div class="font-medium bg-neutral-Navy-100 h-screen">
+    <div
+      class="font-medium bg-neutral-Navy-100 flex justify-center min-h-screen overflow-hidden max-h-full items-center"
+    >
       <div
-        class="p-3 bg-neutral-white rounded-lg gap-2 max-w-[622px] flex flex-col h-auto"
+        class="p-3 pt-4 sm:p-6 bg-neutral-white rounded-lg gap-2 max-w-[622px] flex flex-col h-fit"
       >
         <!-- header -->
         <div class="flex justify-between pb-3">
           <h1 class="font-bold">
             Notifications
             <span
-              class="bg-primary-blue pl-2 pr-2 p-0.5 rounded-sm text-neutral-white"
+              class="bg-primary-blue pl-2 pr-2 p-0.5 rounded-sm text-neutral-white count"
               >3</span
             >
           </h1>
-          <p class="text-neutral-Gray-600">Mark all as read</p>
+          <p
+            class="text-neutral-Gray-600 hover:text-primary-blue cursor-pointer mark-all-as-read"
+          >
+            Mark all as read
+          </p>
         </div>
         <!-- targetas -->
         <!-- 1 -->
-        <div class="bg-neutral-Navy-100 p-3 rounded-lg flex">
+        <div class="bg-neutral-Navy-50 p-3 rounded-lg flex cursor-pointer t-1">
           <img
             src="public/images/avatar-mark-webber.webp"
             alt="usuarios image"
@@ -38,14 +44,14 @@
               >
               My first tournament today!
               <span
-                class="bg-primary-red w-2.5 h-2.5 absolute mt-1.5 ml-2 rounded-full"
+                class="bg-primary-red w-2.5 h-2.5 absolute mt-1.5 ml-2 rounded-full red-circle circle"
               ></span>
             </p>
             <span class="text-neutral-Gray-500">1m ago</span>
           </div>
         </div>
         <!-- 2 -->
-        <div class="bg-neutral-Navy-100 p-3 rounded-lg flex">
+        <div class="bg-neutral-Navy-50 p-3 rounded-lg flex cursor-pointer t-2">
           <img
             src="public/images/avatar-angela-gray.webp"
             alt="usuarios image"
@@ -56,14 +62,14 @@
               <span class="font-bold">Angela Gray</span>
               <span class="text-neutral-Gray-600">followed you</span
               ><span
-                class="bg-primary-red w-2.5 h-2.5 absolute mt-1.5 ml-2 rounded-full"
+                class="bg-primary-red w-2.5 h-2.5 absolute mt-1.5 ml-2 rounded-full circle"
               ></span>
             </p>
             <span class="text-neutral-Gray-500">5m ago</span>
           </div>
         </div>
         <!-- 3 -->
-        <div class="bg-neutral-Navy-100 p-3 rounded-lg flex">
+        <div class="bg-neutral-Navy-50 p-3 rounded-lg flex cursor-pointer t-3">
           <img
             src="public/images/avatar-jacob-thompson.webp"
             alt="usuarios image"
@@ -75,14 +81,14 @@
               <span class="text-neutral-Gray-600">has joined your group</span>
               <span class="text-primary-blue font-bold">Chess Club</span>
               <span
-                class="bg-primary-red w-2.5 h-2.5 absolute mt-1.5 ml-2 rounded-full"
+                class="bg-primary-red w-2.5 h-2.5 absolute mt-1.5 ml-2 rounded-full circle"
               ></span>
             </p>
             <span class="text-neutral-Gray-500">1 day ago</span>
           </div>
         </div>
         <!-- 4 -->
-        <div class="p-3 rounded-lg flex">
+        <div class="p-3 rounded-lg flex cursor-pointer">
           <img
             src="public/images/avatar-rizky-hasanuddin.webp"
             alt="usuarios image"
@@ -97,7 +103,7 @@
             </p>
             <span class="text-neutral-Gray-500">5 days ago</span>
             <div
-              class="p-4 text-neutral-Gray-600 font-extralight border border-neutral-Gray-500 rounded-lg mt-2"
+              class="p-4 text-neutral-Gray-600 font-extralight border border-neutral-Gray-500 rounded-lg mt-2 hover:bg-neutral-Navy-100"
             >
               <p>
                 Hello, thanks for setting up the Chess Club. I've been a member
@@ -108,7 +114,7 @@
           </div>
         </div>
         <!-- 5 -->
-        <div class="p-3 rounded-lg flex">
+        <div class="p-3 rounded-lg flex cursor-pointer">
           <img
             src="public/images/avatar-kimberly-smith.webp"
             alt="usuarios image"
@@ -132,7 +138,7 @@
           </div>
         </div>
         <!-- 6 -->
-        <div class="p-3 rounded-lg flex gap-1.5">
+        <div class="p-3 rounded-lg flex gap-1.5 cursor-pointer">
           <img
             src="public/images/avatar-nathan-peterson.webp"
             alt="usuarios image"
@@ -149,7 +155,7 @@
           </div>
         </div>
         <!-- 7 -->
-        <div class="p-3 rounded-lg flex gap-1.5">
+        <div class="p-3 rounded-lg flex gap-1.5 cursor-pointer">
           <img
             src="public/images/avatar-anna-kim.webp"
             alt="users image"
@@ -166,6 +172,7 @@
       </div>
     </div>
     <div id="app"></div>
+    <script type="module" src="/src/app.js"></script>
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>
