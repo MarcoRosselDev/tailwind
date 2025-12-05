@@ -1,29 +1,14 @@
+import logo from "./assets/images/logo.svg";
+
 function App() {
   return (
-    <>
-      <p className="text-red-500">Testingi tailwind css</p>
-      <div className="font-dm italic font-medium">
-        <p>some test or the font</p>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae quaerat
-          dolores veniam necessitatibus incidunt! Repellendus atque voluptates
-          exercitationem doloremque accusamus! Nobis ducimus quos minus ad
-          pariatur necessitatibus, beatae quisquam possimus. Impedit fugit
-          explicabo, unde vero debitis sapiente ab odio. Libero debitis
-          doloremque voluptatibus quae voluptatum reprehenderit neque optio,
-          velit ad similique. Ullam ea, minima eaque neque provident accusamus
-          mollitia qui?
-        </p>
-        <div>
-          <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-            Repellendus doloribus quas necessitatibus praesentium? Totam ullam
-            repellendus vel sit eum similique porro? Quasi recusandae suscipit
-            ratione soluta officia tempore voluptate rem.
-          </p>
-        </div>
-      </div>
-    </>
+    <div className="bg-neutral-900 min-h-screen text-neutral-0 desktop:max-w-xl p-4">
+      <header className="flex justify-between">
+        <img src={logo} alt="logo weather now app" className=" w-36 h-10" />
+        <div className="">desplegable</div>
+      </header>
+      <main>main</main>
+    </div>
   );
 }
 
