@@ -1,0 +1,49 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: 'Karla';
+  src: url('../public/fonts/Karla-VariableFont_wght.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Karla-Italic';
+  src: url('../public/fonts/Karla-Italic-VariableFont_wght.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Karla-Bold';
+  src: url('../public/fonts/static/Karla-Bold.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Karla-regular';
+  src: url('../public/fonts/static/Karla-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  color: hsl(147, 93%, 11%);
+}
+
+/* *{
+  color: hsla(147, 93%, 11%, 0.235);
+}
+ */
+@theme { 
+  --color-b-green:hsla(147, 93%, 11%, 0.325);
+  --color-primary-green-900: hsl(147, 93%, 11%);
+  --color-primary-green-200: hsl(148, 38%, 91%);
+  --color-primary-green-600:hsl(169, 82%, 27%);
+  --color-primary-red:hsl(0, 66%, 54%);
+  --color-neutral-white:hsl(0, 0%, 100%);
+  --font-karla-bold: "Karla-Bold";
+  --font-karla-regular: "Karla-regular";
+
+  --breakpoint-mobile: 375px;
+  --breakpoint-desktop: 1440px;
+}
