@@ -34,6 +34,12 @@
   color: hsla(147, 93%, 11%, 0.235);
 }
  */
+body.div {
+  padding: 0;
+  box-sizing: border-box;
+  margin: 0 auto;
+}
+
 @theme { 
   --color-b-green:hsla(147, 93%, 11%, 0.325);
   --color-primary-green-900: hsl(147, 93%, 11%);
