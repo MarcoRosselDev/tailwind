@@ -1,26 +1,5 @@
-:root{
-  --header-height: 3.5rem;
-  /* colors */
-  --black-color: hsl(220, 24%, 12%);
-  --black-color-light: hsl(220, 24%, 15%);
-  --black-color-lighten: hsl(220, 20%, 18%);
-  --white-color:#fff;
-  --body-color:rgb(6, 6, 71);
-}
+@import "tailwindcss";
 
-/* min-width: some px; ==> then, if size in px <= then aplay this css rules */
-@media screen and (min-width: 900px) { /* de 900 para arriba */
-  :root{
-    --body-color:rgb(124, 13, 13);
-  }
-}
-
-* {
-  padding: 0;
-  margin: 0 auto;
-  box-sizing: border-box;
-}
-
-body{
-  background-color: var(--body-color);
+@theme { 
+  --color-blue-tr: rgba(0, 0, 255, 0.195); 
 }

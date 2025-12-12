@@ -66,20 +66,6 @@
   --color-blue-500: hsl(233, 67%, 56%);
   --color-blue-700: hsl(248, 70%, 36%);
 
-  /* customizing fonts */
-  /* valores de font
-  - Family: [DM Sans](https://fonts.google.com/specimen/DM+Sans)
-- Weights: 300, 500, 600, 600i, 700
-  :
-  font-light = 300
-  font-medium = 500
-  font-semibold = 600
-  font-semibold  + italic = 600i
-  font-bold = 700
-  */
-  /* ejemplo:
-  font-dm font-[100]
-  font-bricolage weight */
   --font-bricolage: "Bricolage";
   --font-bricolage-b: "Bricolage-bold";
   --font-DM-light: "DM-Sans-light";
@@ -87,11 +73,7 @@
   --font-DM-semibold: "DM-Sans-semibold";
   --font-DM-semibold-italic: "DM-Sans-semibold-italic";
   --font-DM-bold: "DM-Sans-bold";
-  
-  /* custom breakpoint */
-  /* ejemplo:
-  mobile:grid-cols-3
-  desktop:grid-cols-6 */
+
   --breakpoint-mobile: 375px;
   --breakpoint-desktop: 1440px;
 }
