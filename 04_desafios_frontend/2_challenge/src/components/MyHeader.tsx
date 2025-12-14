@@ -10,7 +10,7 @@ export default function MyHeader({ HMS, metricS }: HeaderProps) {
   const [menuVisible, setMenuVisible] = useState(false);
 
   return (
-    <header className="flex justify-between items-center desktop:max-w-[1000px] w-full">
+    <header className="flex justify-between items-center desktop:max-w-[1300px] w-full">
       {/* div transparente para que se cierre el menu nav si se clickea fuera de el */}
       <div
         className={`w-full h-screen fixed top-0 left-0 bg-transparent ${
