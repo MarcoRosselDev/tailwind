@@ -2,50 +2,52 @@
 /* fonts */
 
 @font-face {
-  font-family: 'Bricolage';
-  src: url('/fonts/Bricolage_Grotesque/BricolageGrotesque-VariableFont_opsz\,wdth\,wght.ttf') format('truetype');
+  font-family: "Bricolage";
+  src: url("/fonts/Bricolage_Grotesque/BricolageGrotesque-VariableFont_opsz\,wdth\,wght.ttf")
+    format("truetype");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
-  font-family: 'Bricolage-bold';
-  src: url('/fonts/Bricolage_Grotesque/static/BricolageGrotesque-Bold.ttf') format('truetype');
+  font-family: "Bricolage-bold";
+  src: url("/fonts/Bricolage_Grotesque/static/BricolageGrotesque-Bold.ttf")
+    format("truetype");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
-  font-family: 'DM-Sans-light';
-  src: url('/fonts/DM_Sans/static/DMSans-Light.ttf') format('truetype');
+  font-family: "DM-Sans-light";
+  src: url("/fonts/DM_Sans/static/DMSans-Light.ttf") format("truetype");
   font-weight: 300;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
-  font-family: 'DM-Sans-medium';
-  src: url('/fonts/DM_Sans/static/DMSans-Medium.ttf') format('truetype');
+  font-family: "DM-Sans-medium";
+  src: url("/fonts/DM_Sans/static/DMSans-Medium.ttf") format("truetype");
   font-weight: 500;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
-  font-family: 'DM-Sans-semibold';
-  src: url('/fonts/DM_Sans/static/DMSans-SemiBold.ttf') format('truetype');
+  font-family: "DM-Sans-semibold";
+  src: url("/fonts/DM_Sans/static/DMSans-SemiBold.ttf") format("truetype");
   font-weight: 600;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
-  font-family: 'DM-Sans-semibold-italic';
-  src: url('/fonts/DM_Sans/static/DMSans-SemiBoldItalic.ttf') format('truetype');
+  font-family: "DM-Sans-semibold-italic";
+  src: url("/fonts/DM_Sans/static/DMSans-SemiBoldItalic.ttf") format("truetype");
   font-weight: 600;
   font-style: italic;
   font-display: swap;
 }
 @font-face {
-  font-family: 'DM-Sans-bold';
-  src: url('/fonts/DM_Sans/static/DMSans-Bold.ttf') format('truetype');
+  font-family: "DM-Sans-bold";
+  src: url("/fonts/DM_Sans/static/DMSans-Bold.ttf") format("truetype");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -79,13 +81,12 @@
   --breakpoint-desktop-2: 860px;
 }
 
-
 @layer utilities {
   .bg-image-mobile {
-    background-image: url('/images/bg-today-small.svg');
+    background-image: url("/images/bg-today-small.svg");
   }
-  
+
   .bg-image-desktop {
-    background-image: url('/images/bg-today-large.svg');
+    background-image: url("/images/bg-today-large.svg");
   }
 }
