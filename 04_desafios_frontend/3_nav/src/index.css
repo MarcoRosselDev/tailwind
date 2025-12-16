@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
 @theme { 
-  --color-blue-tr: rgba(0, 0, 255, 0.195); 
+  --color-blue-tr: rgba(0, 0, 255, 0.195);
+  --color-primary-dark-blue: hsl(240, 100%, 14%);
+  --color-primary-text-dark:hsl(240, 50%, 69%);
+  --color-primary-light-blue:hsl(240, 87%, 82%);
 }

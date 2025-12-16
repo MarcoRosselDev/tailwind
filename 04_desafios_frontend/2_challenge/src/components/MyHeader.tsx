@@ -43,7 +43,7 @@ export default function MyHeader({ HMS, metricS }: HeaderProps) {
           />
         </button>
         <div
-          className={`font-DM-bold absolute right-0 mt-2 z-10 p-2 w-[190px] rounded-xl bg-own-neutral-700 ${
+          className={`font-DM-bold absolute right-0 mt-2 z-20 p-2 w-[190px] rounded-xl bg-own-neutral-700 ${
             menuVisible ? "" : "hidden"
           }`}
         >
