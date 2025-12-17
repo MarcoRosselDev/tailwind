@@ -21,6 +21,7 @@ export default function MyMain({ metricS }: MyMainProps) {
         <h1 className="font-bricolage-b text-[49px] p-6 leading-tight">
           How's the sky looking today?
         </h1>
+        {/* form */}
         <div className="flex w-full justify-center">
           <form className="mt-5 flex text-[20px] w-full font-DM-semibold flex-col gap-3 desktop:flex-row max-w-[610px]">
             <div className="flex gap-3 w-full p-3 focus-within:outline cursor-pointer text-own-neutral-0  bg-own-neutral-700 rounded-xl">
@@ -45,18 +46,18 @@ export default function MyMain({ metricS }: MyMainProps) {
 
         <div
           className="grid grid-cols-1 
-        desktop-2:grid-cols-3 desktop-2:grid-rows-6 mt-10 text-3xl w-full gap-6 "
+        desktop-2:grid-cols-3 desktop-2:grid-rows-2 mt-10 text-3xl w-full gap-6"
         >
           {/* izquierda a, b,c */}
           <div
-            className="desktop-2:col-span-2 desktop-2:row-span-4 
-          grid grid-cols-1 desktop-2:grid-rows-4 desktop-2:gap-1
+            className="desktop-2:col-span-2 desktop-2:row-span-2
+          grid grid-cols-1 desktop-2:gap-1
           col-span-1
           "
           >
             {/* A */}
             <div
-              className="rounded-4xl desktop:rounded-2xl desktop:row-span-2 bg-no-repeat desktop:justify-between desktop:p-6
+              className="rounded-4xl desktop:rounded-2xl  bg-no-repeat desktop:justify-between desktop:p-6
                   bg-[url(/images/bg-today-small.svg)] bg-contain desktop:bg-cover bg-center desktop:bg-[url(/images/bg-today-large.svg)] desktop:bg-image-desktop  h-[310px] desktop-2:h-[285px] flex flex-col justify-center desktop:flex-row"
             >
               <A_comp
@@ -69,41 +70,36 @@ export default function MyMain({ metricS }: MyMainProps) {
             </div>
             {/* fin A */}
 
-            {/* B */}
-            <div className="grid grid-cols-2 gap-4 mt-3 desktop-2:grid-cols-4 desktop-2:row-span-1">
-              <B_comp info="64°" title="Feels Like" />
-              <B_comp info="46%" title="Humidity" />
-              <B_comp info="9 mph" title="Wind" />
-              <B_comp info="0 in" title="Precipitation" />
+            {/* B y C juntos */}
+            <div className="pt-0 desktop-2:h-[400px] flex flex-col justify-between ">
+              {/* B */}
+              <div className="grid grid-cols-2 gap-4 mt-3 desktop-2:grid-cols-4 desktop-2:row-span-1">
+                <B_comp info="64°" title="Feels Like" />
+                <B_comp info="46%" title="Humidity" />
+                <B_comp info="9 mph" title="Wind" />
+                <B_comp info="0 in" title="Precipitation" />
+              </div>
+              <div>
+                <h1 className="text-left">Daily forecast</h1>
+                <div
+                  className="grid grid-cols-3 gap-4 grid-rows-3
+              desktop-2:grid-cols-7 desktop-2:grid-rows-1"
+                >
+                  <C_comp day="Tue" max={68} min={57} wheater="snow" />
+                  <C_comp day="Wed" max={68} min={57} wheater="rain" />
+                  <C_comp day="Thu" max={68} min={57} wheater="snow" />
+                  <C_comp day="Fri" max={68} min={57} wheater="storm" />
+                  <C_comp day="Sat" max={68} min={57} wheater="sunny" />
+                  <C_comp day="Sun" max={68} min={57} wheater="rain" />
+                  <C_comp day="Mon" max={68} min={57} wheater="storm" />
+                </div>
+              </div>
             </div>
-            {/* fin B */}
-
-            {/* C */}
-            <h1
-              className="mt-8 mb-5 text-left text-xl font-DM-bold
-            desktop-2:mt-0 "
-            >
-              Daily forecast
-            </h1>
-            <div
-              className="grid grid-cols-3 gap-4 grid-rows-3
-              desktop-2:grid-cols-7
-             "
-            >
-              <C_comp day="Tue" max={68} min={57} wheater="snow" />
-              <C_comp day="Wed" max={68} min={57} wheater="rain" />
-              <C_comp day="Thu" max={68} min={57} wheater="snow" />
-              <C_comp day="Fri" max={68} min={57} wheater="storm" />
-              <C_comp day="Sat" max={68} min={57} wheater="sunny" />
-              <C_comp day="Sun" max={68} min={57} wheater="rain" />
-              <C_comp day="Mon" max={68} min={57} wheater="storm" />
-            </div>
-            {/* fin C */}
           </div>
           {/* derecha d */}
           <div
-            className="desktop:col-span-1 row-span-4
-          bg-own-neutral-700 p-4 rounded-2xl"
+            className="desktop:col-span-1 row-span-2
+          bg-own-neutral-700 p-6 rounded-2xl "
           >
             {/* div transparente para que se cierre el menu nav si se clickea fuera de el */}
             <div
@@ -112,6 +108,7 @@ export default function MyMain({ metricS }: MyMainProps) {
               }`}
               onClick={() => setMenuForecast((prev) => !prev)}
             ></div>
+
             {/* header D whit nav */}
             <div className="flex flex-row justify-between  w-full relative">
               <h1 className="text-xl font-DM-bold">Hourly forecast</h1>

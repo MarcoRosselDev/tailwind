@@ -1,3 +1,54 @@
+# Logica en la peticion API
+
+la documentacion de open-meteo API no procesa las llamadas por nombre de ciudad o pais, en su lugar utiliza las coordenadas latitud y longitud.  
+Por los que se requiere una llamada previa de la misma API pero que proporciona la funionalidad de entregar la latitud y longitud si le damos el nomber de una ciudad.
+
+```javascript
+// url ciudad to coordenadas
+fetch("https://geocoding-api.open-meteo.com/v1/search?name=[NOMBRE_DE_LA_CIUDAD]&count=1")
+// retorna un json:
+{
+  "results": [
+    {
+      "id": 3117735,
+      "name": "Madrid",
+      "latitude": 40.4165,
+      "longitude": -3.70256,
+      ...
+    }
+  ]
+}
+// luego utilizamos esta info para llamar a la URL API principal
+fetch("https://api.open-meteo.com/v1/forecast?latitude=40.4165&longitude=-3.70256&current=temperature_2m,wind_speed_10m&hourly=temperature_2m")
+
+// reorna otro json, pero ahora con la info que necesitamos
+{
+  "latitude": -38.75,
+  "longitude": -72.625,
+  "generationtime_ms": 0.06401538848876953,
+  "utc_offset_seconds": 0,
+  "timezone": "GMT",
+  "timezone_abbreviation": "GMT",
+  "elevation": 109.0,
+  "current_units": {
+    "time": "iso8601",
+    "interval": "seconds",
+    "temperature_2m": "°C",
+    "wind_speed_10m": "km/h"
+  },
+  "current": {
+    "time": "2025-12-17T07:45",
+    "interval": 900,
+    "temperature_2m": 11.9,
+    "wind_speed_10m": 5.9
+  },
+  "hourly_units": {
+    "time": "iso8601",
+    "temperature_2m": "°C"
+  }, ...
+}
+```
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
@@ -17,9 +68,9 @@ If you are developing a production application, we recommend updating the config
 
 ```js
 export default defineConfig([
-  globalIgnores(['dist']),
+  globalIgnores(["dist"]),
   {
-    files: ['**/*.{ts,tsx}'],
+    files: ["**/*.{ts,tsx}"],
     extends: [
       // Other configs...
 
@@ -34,40 +85,40 @@ export default defineConfig([
     ],
     languageOptions: {
       parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        project: ["./tsconfig.node.json", "./tsconfig.app.json"],
         tsconfigRootDir: import.meta.dirname,
       },
       // other options...
     },
   },
-])
+]);
 ```
 
 You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
 ```js
 // eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+import reactX from "eslint-plugin-react-x";
+import reactDom from "eslint-plugin-react-dom";
 
 export default defineConfig([
-  globalIgnores(['dist']),
+  globalIgnores(["dist"]),
   {
-    files: ['**/*.{ts,tsx}'],
+    files: ["**/*.{ts,tsx}"],
     extends: [
       // Other configs...
       // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
+      reactX.configs["recommended-typescript"],
       // Enable lint rules for React DOM
       reactDom.configs.recommended,
     ],
     languageOptions: {
       parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        project: ["./tsconfig.node.json", "./tsconfig.app.json"],
         tsconfigRootDir: import.meta.dirname,
       },
       // other options...
     },
   },
-])
+]);
 ```

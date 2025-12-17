@@ -7,7 +7,7 @@ type D_types_props = {
 export default function D_compo({ forecast, hour, info }: D_types_props) {
   return (
     <div
-      className="flex justify-between p-3 w-full
+      className="flex justify-between p-4 w-full
 bg-own-neutral-600 mt-4 rounded-lg text-lg"
     >
       {/* left */}
