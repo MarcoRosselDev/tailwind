@@ -1,13 +1,19 @@
+type MyObj = {
+  latitude: number
+  longitude: number
+}
+
 async function city_coordenadas(city: string) {
-  let coordenadas = {};
+  let coordenadas<MyObj> = {};
   const data = await fetch(
     `https://geocoding-api.open-meteo.com/v1/search?name=${city}&count=1`
   );
   const json = await data.json();
+
   //console.log(json.results[0]);
-  coordenadas.latitude = json.results[0]["latitude"];
-  coordenadas.longitude = json.results[0]["longitude"];
-  return coordenadas;
+  await coordenadas.latitude = json.results[0]["latitude"];
+  await coordenadas.longitude = json.results[0]["longitude"];
+  return await coordenadas;
 }
 
 const d = city_coordenadas().then((response) => console.log(response));
