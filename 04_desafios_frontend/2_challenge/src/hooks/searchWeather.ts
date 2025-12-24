@@ -1,14 +1,45 @@
 import { useEffect, useState } from "react";
 import searchCoordenates from "./searchCoordenates";
 import useFetch from "./useFetch";
-import type {
-  CoordinatesApiResponse,
-  LocatioFormat,
-  MainObj,
-} from "../types/location_types";
+import type { LocatioFormat, MainObj } from "../types/location_types";
 
 export default function searchWeather(city: string): MainObj {
-  const {
+  const [data, setData] = useState<MainObj | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [err_message, setErr_message] = useState<null | string>(null);
+
+  useEffect(() => {
+    const d:
+      | {
+          data: {};
+          err_message: string;
+          isLoading: boolean;
+          df?: undefined;
+        }
+      | {
+          isLoading: boolean;
+          df: LocatioFormat;
+          err_message: string | null;
+          data?: undefined;
+        } = searchCoordenates(city);
+    const { err_message, isLoading, df } = d;
+    console.log(err_message, isLoading, df);
+
+    if (err_message) {
+      setIsLoading(isLoading);
+      setErr_message(err_message);
+    }
+    const m = useFetch(
+      df?.latitude
+        ? `https://api.open-meteo.com/v1/forecast?latitude=4${df.latitude}&longitude=${df.longitude}&current=temperature_2m,wind_speed_10m&hourly=temperature_2m`
+        : ""
+    );
+
+    setData({ data: m, err_message, isLoading });
+  }, []);
+  return { data, isLoading, err_message };
+}
+/* const {
     err_message,
     isLoading,
     data: data_coordenation,
@@ -19,10 +50,9 @@ export default function searchWeather(city: string): MainObj {
   } = searchWeather(city);
   console.log(err_message, isLoading, data_coordenation);
 
-  return { data: data_coordenation, err_message, isLoading };
-  //    const {latitude,longitude} = data
-  //    const {data, err_message, isLoading} = useFetch(`https://api.open-meteo.com/v1/forecast?latitude=4${data.latitude}&longitude=${data.longitude}&current=temperature_2m,wind_speed_10m&hourly=temperature_2m`)
-}
+  return { data: data_coordenation, err_message, isLoading }; */
+//    const {latitude,longitude} = data
+//    const {data, err_message, isLoading} = useFetch(`https://api.open-meteo.com/v1/forecast?latitude=4${data.latitude}&longitude=${data.longitude}&current=temperature_2m,wind_speed_10m&hourly=temperature_2m`)
 
 /* const [obj, setObj] = useState<MainObj>({
   data: {},

@@ -1,12 +1,15 @@
 export type MainObj = {
   err_message: null | string;
   isLoading: boolean;
-  data: object | null; // futuramente cambiar al type WeatherObject
+  data: object | null | unknown; // futuramente cambiar al type WeatherObject
 };
 
 export type LocatioFormat = {
-  latitude: number | undefined;
-  longitude: number | undefined;
+  coordenadas: {
+    latitude: number | undefined;
+    longitude: number | undefined;
+  };
+  isLoading: boolean;
 };
 
 export type LocationResult = {
