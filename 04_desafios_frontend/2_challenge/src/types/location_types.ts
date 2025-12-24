@@ -37,3 +37,9 @@ export type CoordinatesApiResponse = {
   results: LocationResult[];
   generationtime_ms: number;
 };
+
+export type CoordinatesProps = {
+  data: CoordinatesApiResponse | null;
+  err_message: string | null;
+  isLoading: boolean;
+};

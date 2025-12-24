@@ -1,43 +1,43 @@
 import type { MetricObject } from "./types";
 import BodySearch from "./BodySearch";
+import searchWeather from "../hooks/searchWeather";
 import searchCoordenates from "../hooks/searchCoordenates";
 import { useEffect, useState } from "react";
-import fetch_coordenadas from "../sec_try/fetch_coordenadas";
-import fetch_weather from "../sec_try/fetch_weather";
+import weather from "../hooks/weather2";
+import type { MainObj } from "../types/location_types";
 
 type MyMainProps = {
   metricS: MetricObject;
 };
 
 export default function MyMain({ metricS }: MyMainProps) {
-  const [data, setData] = useState({});
-  const [isLoading, setIsLoading] = useState(true);
-  const [err_message, setErr_message] = useState("");
-  const [latitude, setLatitude] = useState(0);
-  const [longitude, setLongitude] = useState(0);
+  const [data, setData] = useState<MainObj | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [err_message, setErr_message] = useState<null | string>(null);
+
+  //const [menuForecast, setMenuForecast] = useState(false);
+
+  /* const { data, err_message, isLoading } = useFetch(
+    "https://jsonplaceholder.typicode.com/todos/1"
+  ); */
 
   useEffect(() => {
-    const c_later = async (city: string) => {
-      const { d, err_m } = await fetch_coordenadas(city);
-      //setData({ d });
-      setErr_message(err_m);
-      //setIsLoading(false);
-      setLatitude(d?.latitude);
-      setLongitude(d?.longitude);
-    };
-    c_later("berlin");
+    const result = searchCoordenates("berlin");
+    if (result?.coordenadas.latitude) {
+      console.log("this is first", result.coordenadas.latitude);
+      const { data, isLoading, err_message } = weather(
+        result.coordenadas.latitude,
+        result.coordenadas.longitude
+      );
+      if (err_message) {
+        setErr_message(err_message);
+        return;
+      }
+      setData({ data, isLoading, err_message });
+      setIsLoading(isLoading);
+    }
   }, []);
   //const { data, isLoading, err_message } = searchCoordenates("berlin");
-
-  useEffect(() => {
-    const c_laterr = async () => {
-      const { d, err_m } = await fetch_weather(latitude, longitude);
-      setData({ d });
-      setErr_message(err_m);
-      setIsLoading(false);
-    };
-    c_laterr();
-  }, [latitude, longitude]);
 
   if (isLoading)
     return (
