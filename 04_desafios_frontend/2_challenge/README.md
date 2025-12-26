@@ -49,6 +49,40 @@ fetch("https://api.open-meteo.com/v1/forecast?latitude=40.4165&longitude=-3.7025
 }
 ```
 
+# AI HELPS
+
+solicite ayuda en la parte de el llamado a la API para que me prepare la url con la informacion que solicita el proyecto
+el input fue el siguiente:
+
+```javascript
+/* quiero realizar una peticion a la api de clima https://open-meteo.com/ , pero tengo que customizar la url para que solicite los siguientes datos:
+Feels Like,
+Humidity,
+wind,
+precipitation,
+Hourly forecast (de este necesito 8 horas seguidas ,por ejemplo 8pm, 9pm, ... y asi),
+Daily forecast (de este necesito los 7 siguientes dias a partir del dia actual).
+de toda esta informacion quiero saber si se puede solicitar en Fahrengheit y Celsius o tengo que escoger uno de los dos por peticion.
+el tema de la longitud y latitude lo tengo solucionado realizando una peticion previa, por ahora se que devo solicitar la informacion de la siguiente forma:
+un fetch a el link https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&current_weather=true
+ y luego encadenar los parametros que te mencione previamente con un &, puedes ayudarme? */
+```
+
+el output fue excelente y resumio toda la documentacion en la siguiente url:
+
+```javascript
+// URL construida con los parámetros
+const apiUrl = `https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41
+    &hourly=apparent_temperature,relative_humidity_2m,precipitation,wind_speed_10m
+    &daily=apparent_temperature_max,apparent_temperature_min,sunrise,sunset,precipitation_sum,wind_speed_10m_max
+    &forecast_hours=8
+    &forecast_days=7
+    &temperature_unit=fahrenheit
+    &wind_speed_unit=mph
+    &precipitation_unit=inch
+    &timezone=auto`;
+```
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.

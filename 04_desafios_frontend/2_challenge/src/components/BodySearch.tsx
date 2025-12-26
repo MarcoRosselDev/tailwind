@@ -4,7 +4,7 @@ import B_comp from "./B_comp";
 import C_comp from "./C_comp";
 import D_compo from "./D_comp";
 
-export default function BodySearch() {
+export default function BodySearch(data: any) {
   const [menuForecast, setMenuForecast] = useState(false);
   return (
     <>

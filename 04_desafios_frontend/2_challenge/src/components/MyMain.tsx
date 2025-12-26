@@ -68,7 +68,7 @@ export default function MyMain({ metricS }: MyMainProps) {
       esta logica es posible por que el header se muestra si o si,segun el diseño espesificado */}
       <div className="text-center">
         {/* si todo va bien primero el buscador */}
-        <BodySearch />
+        <BodySearch data={data} />
         {/*end main grid */}
       </div>
       <pre>{JSON.stringify(data, null, 2)}</pre>
