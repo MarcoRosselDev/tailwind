@@ -20,7 +20,7 @@ export default async function fetch_coordenates(
     };
   }
   const json: CoordinatesApiResponse = await response.json();
-  console.log(json);
+  //console.log(json);
   const info: LocationResult = json.results[0];
   return {
     lat: info.latitude,
