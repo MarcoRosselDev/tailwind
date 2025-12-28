@@ -4,7 +4,6 @@ import fetch_coordenates from "./querys/fetch_coordenates";
 import { fetch_weather } from "./querys/fatch_weather";
 import type { TypeCoordenate } from "./types/type_coordenates";
 import type { Weather_data } from "./types/type_weather";
-import { traducirClima } from "./querys/codigo_clima";
 
 function App() {
   /* por que separar la data principal y data secundaria?

@@ -1,8 +1,8 @@
-export type A = {
+export type Weather_data = {
   current: {
     time: Date;
     temperature_2m: number;
-    weather_code: number;
+    weather_code: string;
     relative_humidity_2m: number;
     apparent_temperature: number;
     precipitation: number;
@@ -19,3 +19,13 @@ export type A = {
     temperatureMin: Float32Array<ArrayBufferLike>;
   };
 };
+
+export type WeatherCondition =
+  | "sunny"
+  | "partly-cloudy"
+  | "over-cast"
+  | "drizzle"
+  | "rain"
+  | "snow"
+  | "storm"
+  | "fog";

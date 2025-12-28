@@ -1,5 +1,6 @@
 import { fetchWeatherApi } from "openmeteo";
 import type { Weather_data } from "../types/type_weather";
+import { getWeatherCondition } from "./codigo_clima";
 
 export const fetch_weather = async (
   lat: number,
@@ -32,12 +33,16 @@ export const fetch_weather = async (
   const current = response.current()!;
   const hourly = response.hourly()!;
   const daily = response.daily()!;
+  console.log(daily.variables(0)!.valuesArray()!);
+  console.log(daily.variables(0));
+  console.log(typeof daily.variables(0)!.valuesArray()!);
+
   // Note: The order of weather variables in the URL query and the indices below need to match!
   const weatherData = {
     current: {
       time: new Date((Number(current.time()) + utcOffsetSeconds) * 1000),
       temperature_2m: current.variables(0)!.value(),
-      weather_code: current.variables(1)!.value(),
+      weather_code: getWeatherCondition(current.variables(1)!.value()),
       relative_humidity_2m: current.variables(2)!.value(),
       apparent_temperature: current.variables(3)!.value(),
       precipitation: current.variables(4)!.value(),
