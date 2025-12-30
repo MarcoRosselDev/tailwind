@@ -44,10 +44,10 @@ export function getWeatherCondition(code) {
   return condition;
 }
 
-console.log(getWeatherCondition(0));
+/* console.log(getWeatherCondition(0));
 console.log(getWeatherCondition(1));
 console.log(getWeatherCondition(75));
-console.log(getWeatherCondition(999));
+console.log(getWeatherCondition(999)); */
 
 const obj = {
   0: 3,
@@ -58,8 +58,22 @@ const obj = {
   5: 71,
   6: 3,
 };
-console.log(obj.length);
 
-for (let i = 0; i < obj.length; i++) {
-  console.log("asdf");
+/* const keys = Object.keys(obj);
+for (let i = 0; i < keys.length; i++) {
+  obj[i] = getWeatherCondition(obj[i]); // Nota: obj[i].value no existe, es directamente obj[i]
 }
+ */
+Object.keys(obj).forEach((key) => {
+  obj[key] = getWeatherCondition(obj[key]);
+});
+
+/* 4 opcion con for in
+for (let key in obj) {
+  if (obj.hasOwnProperty(key)) {
+    obj[key] = getWeatherCondition(obj[key]);
+  }
+}
+*/
+
+console.log(obj);

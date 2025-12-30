@@ -34,8 +34,8 @@ export const fetch_weather = async (
   const hourly = response.hourly()!;
   const daily = response.daily()!;
   console.log(daily.variables(0)!.valuesArray()!);
-  console.log(daily.variables(0));
-  console.log(typeof daily.variables(0)!.valuesArray()!);
+  console.log(daily.variables(0)); // no sirve de nada
+  console.log(typeof daily.variables(0)!.valuesArray()!); // objeto
 
   // Note: The order of weather variables in the URL query and the indices below need to match!
   const weatherData = {
