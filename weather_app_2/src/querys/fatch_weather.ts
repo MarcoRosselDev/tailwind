@@ -1,6 +1,6 @@
 import { fetchWeatherApi } from "openmeteo";
 import type { Weather_data } from "../types/type_weather";
-import { getWeatherCondition } from "./codigo_clima";
+//import { getWeatherCondition } from "../componentes/codigo_clima";
 
 export const fetch_weather = async (
   lat: number,
@@ -42,7 +42,7 @@ export const fetch_weather = async (
     current: {
       time: new Date((Number(current.time()) + utcOffsetSeconds) * 1000),
       temperature_2m: current.variables(0)!.value(),
-      weather_code: getWeatherCondition(current.variables(1)!.value()),
+      weather_code: current.variables(1)!.value(),
       relative_humidity_2m: current.variables(2)!.value(),
       apparent_temperature: current.variables(3)!.value(),
       precipitation: current.variables(4)!.value(),

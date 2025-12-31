@@ -2,7 +2,7 @@ export type Weather_data = {
   current: {
     time: Date;
     temperature_2m: number;
-    weather_code: string;
+    weather_code: number;
     relative_humidity_2m: number;
     apparent_temperature: number;
     precipitation: number;

@@ -4,6 +4,7 @@ import fetch_coordenates from "./querys/fetch_coordenates";
 import { fetch_weather } from "./querys/fatch_weather";
 import type { TypeCoordenate } from "./types/type_coordenates";
 import type { Weather_data } from "./types/type_weather";
+import Section_a from "./componentes/Seccion_a";
 
 function App() {
   /* por que separar la data principal y data secundaria?
@@ -98,6 +99,14 @@ function App() {
       </div>
 
       <div>
+        <Section_a
+          city={data_principal?.city}
+          country={data_principal?.country}
+          date={data_secundaria?.current.time}
+          temperature={data_secundaria?.current.temperature_2m}
+          weather_code={data_secundaria?.current.weather_code}
+          key={2}
+        />
         <h1>primera peticion (coordenadas ,nombres de ciudad y pais)</h1>
         <pre>{JSON.stringify(data_principal, null, 2)}</pre>
         <h1>segunda peticion (data requerida de app)</h1>
