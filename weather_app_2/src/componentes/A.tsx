@@ -1,5 +1,6 @@
 import format_date from "../utils/format_date.ts";
-import { getWeatherCondition } from "./codigo_clima.ts";
+import { getWeatherCondition } from "../utils/codigo_clima.ts";
+import Card from "./Card.tsx";
 
 type A = {
   country: string | undefined;
@@ -9,7 +10,7 @@ type A = {
   temperature: number | undefined;
 };
 
-export default function Section_a({
+export default function A({
   city,
   country,
   date,
@@ -26,13 +27,13 @@ export default function Section_a({
   }
 
   return (
-    <div className="p-2 border border-pink rounded-2xl">
+    <Card>
       <h1>seccion A</h1>
       <p>{city}</p>
       <p>{country}</p>
       <p>{f_data}</p>
       <p>{temperature}</p>
       <p>{clima}</p>
-    </div>
+    </Card>
   );
 }

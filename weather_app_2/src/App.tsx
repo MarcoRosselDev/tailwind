@@ -4,7 +4,9 @@ import fetch_coordenates from "./querys/fetch_coordenates";
 import { fetch_weather } from "./querys/fatch_weather";
 import type { TypeCoordenate } from "./types/type_coordenates";
 import type { Weather_data } from "./types/type_weather";
-import Section_a from "./componentes/Seccion_a";
+import A from "./componentes/A";
+import B from "./componentes/B";
+("./componentes/A");
 
 function App() {
   /* por que separar la data principal y data secundaria?
@@ -31,6 +33,10 @@ function App() {
   const [error_msg, setError_msg] = useState<null | string>(null);
   const [loading, setLoading] = useState(true);
 
+  function loadingHandler(val: boolean) {
+    setLoading(val);
+  }
+
   useEffect(() => {
     const late = async () => {
       const { error_ms, lat, long, city, country } = await fetch_coordenates(
@@ -56,13 +62,22 @@ function App() {
     if (latitude == 0 || longitude == 0) {
       return;
     } else {
-      fetch_weather(latitude, longitude, handler_secundary_data);
+      fetch_weather(
+        latitude,
+        longitude,
+        handler_secundary_data,
+        loadingHandler
+      );
     }
   }, [latitude, longitude]);
 
   function handleSubmit(event: FormEvent) {
     event.preventDefault();
     setCity_name(m_name);
+  }
+
+  if (loading) {
+    return <p>loading...</p>;
   }
 
   return (
@@ -99,13 +114,20 @@ function App() {
       </div>
 
       <div>
-        <Section_a
+        <A
           city={data_principal?.city}
           country={data_principal?.country}
           date={data_secundaria?.current.time}
           temperature={data_secundaria?.current.temperature_2m}
           weather_code={data_secundaria?.current.weather_code}
           key={2}
+        />
+        <B
+          feels_like={data_secundaria?.current.apparent_temperature}
+          humedity={data_secundaria?.current.relative_humidity_2m}
+          precipitation={data_secundaria?.current.precipitation}
+          wind={data_secundaria?.current.wind_speed_10m}
+          key={4}
         />
         <h1>primera peticion (coordenadas ,nombres de ciudad y pais)</h1>
         <pre>{JSON.stringify(data_principal, null, 2)}</pre>

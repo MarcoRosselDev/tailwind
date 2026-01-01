@@ -5,7 +5,8 @@ import type { Weather_data } from "../types/type_weather";
 export const fetch_weather = async (
   lat: number,
   long: number,
-  handler_secundary_data: (data: Weather_data) => void
+  handler_secundary_data: (data: Weather_data) => void,
+  loadingHandler: (val: boolean) => void
 ) => {
   const params = {
     latitude: [lat],
@@ -18,6 +19,7 @@ export const fetch_weather = async (
       "relative_humidity_2m",
       "apparent_temperature",
       "precipitation",
+      "wind_speed_10m",
     ],
   };
   const url = "https://api.open-meteo.com/v1/forecast";
@@ -33,9 +35,6 @@ export const fetch_weather = async (
   const current = response.current()!;
   const hourly = response.hourly()!;
   const daily = response.daily()!;
-  console.log(daily.variables(0)!.valuesArray()!);
-  console.log(daily.variables(0)); // no sirve de nada
-  console.log(typeof daily.variables(0)!.valuesArray()!); // objeto
 
   // Note: The order of weather variables in the URL query and the indices below need to match!
   const weatherData = {
@@ -46,6 +45,7 @@ export const fetch_weather = async (
       relative_humidity_2m: current.variables(2)!.value(),
       apparent_temperature: current.variables(3)!.value(),
       precipitation: current.variables(4)!.value(),
+      wind_speed_10m: current.variables(5)!.value(),
     },
     hourly: {
       time: range(
@@ -68,4 +68,5 @@ export const fetch_weather = async (
     },
   };
   handler_secundary_data(weatherData);
+  loadingHandler(false);
 };
