@@ -6,6 +6,7 @@ import type { TypeCoordenate } from "./types/type_coordenates";
 import type { Weather_data } from "./types/type_weather";
 import A from "./componentes/A";
 import B from "./componentes/B";
+import C from "./componentes/C";
 ("./componentes/A");
 
 function App() {
@@ -129,6 +130,7 @@ function App() {
           wind={data_secundaria?.current.wind_speed_10m}
           key={4}
         />
+        <C info={data_secundaria?.daily} />
         <h1>primera peticion (coordenadas ,nombres de ciudad y pais)</h1>
         <pre>{JSON.stringify(data_principal, null, 2)}</pre>
         <h1>segunda peticion (data requerida de app)</h1>

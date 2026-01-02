@@ -10,6 +10,7 @@ type B = {
 export default function B({ feels_like, humedity, wind, precipitation }: B) {
   return (
     <Card>
+      <h1>Seccion B</h1>
       <Card>
         <p>Feels like</p>
         <p>{feels_like} °</p>
