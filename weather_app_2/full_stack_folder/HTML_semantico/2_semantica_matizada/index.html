@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>semantica matizada</title>
+  </head>
+  <body>
+    <!-- Las listas de descripción son perfectas para presentar términos y definiciones en un formato organizado y fácil de leer, como en un glosario, o un diccionario real, donde puedes encontrar palabras con sus definiciones correspondientes. -->
+    <dl>
+      <dt>Flour</dt>
+      <dd>2 cups</dd>
+      <dt>Sugar</dt>
+      <dd>1/2 cup</dd>
+      <dt>Vegetable Oil</dt>
+      <dd>2 tablespoons</dd>
+    </dl>
+
+    <!-- citas :para referir la cita a su prosedencia de origen, (no cambia como se ve el texto) -->
+    <blockquote cite="https://www.freecodecamp.org/news/learn-to-code-book/">
+      <p>
+        Build your projects. Show them to your friends. Build projects for your
+        friends.
+      </p>
+      <p>
+        Build your network. Help the people you meet along the way. What goes
+        around comes around. You'll get what's coming to you.
+      </p>
+      <p>It is not too late. Life is long.</p>
+      <p>
+        You will look back on this moment years from now and be glad you made a
+        move.
+      </p>
+    </blockquote>
+
+    <!-- si quiere que se vea la cita aplicar el elemento cite -->
+    <div>
+      <blockquote cite="https://www.freecodecamp.org/news/learn-to-code-book/">
+        Can you imagine what it would be like to be a successful developer? To
+        have built software systems that people rely upon?
+      </blockquote>
+      <p>
+        —Quincy Larson,
+        <cite>How to Learn to Code and Get a Developer Job [Full Book].</cite>
+      </p>
+    </div>
+
+    <!-- otro ejemplo -->
+    <p>
+      As Quincy Larson said,
+      <q cite="https://www.freecodecamp.org/news/learn-to-code-book/">
+        Momentum is everything.
+      </q>
+    </p>
+
+    <!-- ¿Cuál es la diferencia entre citas en bloque y en línea? Debes usar citas en bloque para citas extensas de otras fuentes y citas en línea para citas breves de otras fuentes que deberían formar parte de párrafos existentes.
+  -->
+
+    <!-- abreviaturas en HTML : muetra el nombre abrebiado en :hover text 
+     el atributo title es opcional -->
+    <p>
+      <abbr title="HyperText Markup Language">HTML</abbr> is the foundation of
+      the web.
+    </p>
+
+    <!-- address -->
+    <address>
+      <h2>Company Name</h2>
+      <p>
+        1234 Elm Street<br />
+        Springfield, IL 62701<br />
+        United States
+      </p>
+      <!-- mailto: se utiliza para abrir el correo de preferencia con tu correo ya seleccionado
+       el problema es que se utiliza por hackers para enviarte span -->
+      <p>Phone: <a href="tel:+15555555555">+1 (555) 555-5555</a></p>
+      <p>Email: <a href="mailto:contact@company.com">contact@company.com</a></p>
+    </address>
+
+    <!-- tiempo -->
+    <!-- hora -->
+    <p>The reservations are for <time datetime="20:00">20:00 </time></p>
+    <!-- fecha ISO 8601: YYYY-MM-DDTHH:MM:SS la T es un separador entre la fecha y la hora-->
+    <p>
+      The graduation will be on <time datetime="2024-06-15T15:00">June 15</time>
+    </p>
+  </body>
+</html>
