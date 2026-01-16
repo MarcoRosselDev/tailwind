@@ -1,1 +1,92 @@
 @import "tailwindcss";
+/* fonts */
+
+@font-face {
+  font-family: "Bricolage";
+  src: url("/fonts/Bricolage_Grotesque/BricolageGrotesque-VariableFont_opsz\,wdth\,wght.ttf")
+    format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Bricolage-bold";
+  src: url("/fonts/Bricolage_Grotesque/static/BricolageGrotesque-Bold.ttf")
+    format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "DM-Sans-light";
+  src: url("/fonts/DM_Sans/static/DMSans-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "DM-Sans-medium";
+  src: url("/fonts/DM_Sans/static/DMSans-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "DM-Sans-semibold";
+  src: url("/fonts/DM_Sans/static/DMSans-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "DM-Sans-semibold-italic";
+  src: url("/fonts/DM_Sans/static/DMSans-SemiBoldItalic.ttf") format("truetype");
+  font-weight: 600;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "DM-Sans-bold";
+  src: url("/fonts/DM_Sans/static/DMSans-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  /* neutral */
+  --color-own-neutral-900: hsl(243, 96%, 9%);
+  --color-own-neutral-800: hsl(243, 27%, 20%);
+  --color-own-neutral-700: hsl(243, 23%, 24%);
+  --color-own-neutral-600: hsl(243, 23%, 30%);
+  --color-own-neutral-300: hsl(240, 6%, 70%);
+  --color-own-neutral-200: hsl(250, 6%, 84%);
+  --color-own-neutral-0: hsl(0, 0%, 100%);
+  /* orange */
+  --color-own-orange-500: hsl(28, 100%, 52%);
+  /* blue */
+  --color-own-blue-500: hsl(233, 67%, 56%);
+  --color-own-blue-700: hsl(248, 70%, 36%);
+
+  --font-bricolage: "Bricolage";
+  --font-bricolage-b: "Bricolage-bold";
+  --font-DM-light: "DM-Sans-light";
+  --font-DM-medium: "DM-Sans-medium";
+  --font-DM-semibold: "DM-Sans-semibold";
+  --font-DM-semibold-italic: "DM-Sans-semibold-italic";
+  --font-DM-bold: "DM-Sans-bold";
+
+  --breakpoint-mobile: 375px;
+  --breakpoint-desktop: 560px;
+  --breakpoint-desktop-2: 860px;
+}
+
+@layer utilities {
+  .bg-image-mobile {
+    background-image: url("/images/bg-today-small.svg");
+  }
+
+  .bg-image-desktop {
+    background-image: url("/images/bg-today-large.svg");
+  }
+}
