@@ -1,9 +1,9 @@
 import { useState } from "react";
-import type { MetricObject } from "../types/header_types";
+//import type { MetricObject } from "../types/header_types";
 
 type HeaderProps = {
   HMS: () => void;
-  metricS: MetricObject;
+  metricS: Boolean;
 };
 
 export default function NavHeader({ HMS, metricS }: HeaderProps) {
@@ -51,7 +51,7 @@ export default function NavHeader({ HMS, metricS }: HeaderProps) {
             className="rounded-xl bg-own-neutral-700 z-10 p-2 w-full hover:outline-own-neutral-200 focus:outline-own-neutral-200 focus:outline-2 text-left cursor-pointer"
             onClick={HMS}
           >
-            Switch to {metricS.sistem === "Imperial" ? "Metric" : "Imperial"}
+            Switch to {!metricS ? "Metric" : "Imperial"}
           </button>
           {/* ul temperature */}
           <ul className="border-b-2 border-b-own-neutral-600 mt-1 w-full">
@@ -60,13 +60,11 @@ export default function NavHeader({ HMS, metricS }: HeaderProps) {
             </span>
             <li
               className={`flex gap-3 justify-between mt-2 p-2  rounded-md w-full ${
-                metricS.temperature === "Celsius (°C)"
-                  ? "bg-own-neutral-600"
-                  : ""
+                metricS ? "bg-own-neutral-600" : ""
               }`}
             >
               Celsius (°C){" "}
-              {metricS.temperature === "Celsius (°C)" ? (
+              {metricS ? (
                 <img
                   src="/images/icon-checkmark.svg"
                   alt="icon check that confirm the selction sistem unit"
@@ -77,13 +75,11 @@ export default function NavHeader({ HMS, metricS }: HeaderProps) {
             </li>
             <li
               className={`flex gap-3 justify-between mt-1 mb-1 p-2  rounded-md w-full ${
-                metricS.temperature === "Fahrenheit (°F)"
-                  ? "bg-own-neutral-600"
-                  : ""
+                !metricS ? "bg-own-neutral-600" : ""
               }`}
             >
               Fahrengheit (°F){" "}
-              {metricS.temperature === "Fahrenheit (°F)" ? (
+              {!metricS ? (
                 <img
                   src="/images/icon-checkmark.svg"
                   alt="icon check that confirm the selction sistem unit"
@@ -102,11 +98,11 @@ export default function NavHeader({ HMS, metricS }: HeaderProps) {
             </span>
             <li
               className={`flex gap-3 justify-between mt-2 p-2  rounded-md w-full ${
-                metricS.windPeed === "km/h" ? "bg-own-neutral-600" : ""
+                metricS ? "bg-own-neutral-600" : ""
               }`}
             >
               km/h{" "}
-              {metricS.temperature === "Celsius (°C)" ? (
+              {metricS ? (
                 <img
                   src="/images/icon-checkmark.svg"
                   alt="icon check that confirm the selction sistem unit"
@@ -117,11 +113,11 @@ export default function NavHeader({ HMS, metricS }: HeaderProps) {
             </li>
             <li
               className={`flex gap-3 justify-between mt-1 mb-1 p-2  rounded-md w-full ${
-                metricS.windPeed === "mph" ? "bg-own-neutral-600" : ""
+                !metricS ? "bg-own-neutral-600" : ""
               }`}
             >
               mph
-              {metricS.temperature === "Fahrenheit (°F)" ? (
+              {!metricS ? (
                 <img
                   src="/images/icon-checkmark.svg"
                   alt="icon check that confirm the selction sistem unit"
@@ -140,13 +136,11 @@ export default function NavHeader({ HMS, metricS }: HeaderProps) {
             </span>
             <li
               className={`flex gap-3 justify-between mt-2 p-2  rounded-md w-full ${
-                metricS.precipitation === "Millimeters (mm)"
-                  ? "bg-own-neutral-600"
-                  : ""
+                metricS ? "bg-own-neutral-600" : ""
               }`}
             >
               Millimeters (mm)
-              {metricS.temperature === "Celsius (°C)" ? (
+              {metricS ? (
                 <img
                   src="/images/icon-checkmark.svg"
                   alt="icon check that confirm the selction sistem unit"
@@ -157,13 +151,11 @@ export default function NavHeader({ HMS, metricS }: HeaderProps) {
             </li>
             <li
               className={`flex gap-3 justify-between mt-1 mb-1 p-2  rounded-md w-full ${
-                metricS.precipitation === "Inches (in)"
-                  ? "bg-own-neutral-600"
-                  : ""
+                !metricS ? "bg-own-neutral-600" : ""
               }`}
             >
               Inches (in)
-              {metricS.temperature === "Fahrenheit (°F)" ? (
+              {!metricS ? (
                 <img
                   src="/images/icon-checkmark.svg"
                   alt="icon check that confirm the selction sistem unit"
