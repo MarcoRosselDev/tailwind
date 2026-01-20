@@ -1,13 +1,20 @@
-//import Section_a from "./sections/Section_a";
-
-import { useState, type FormEvent } from "react";
+import { useRef, useState, type FormEvent } from "react";
+import Section_a from "./sections/Section_a";
+import Section_b from "./sections/Section_b";
+import Section_c from "./sections/Section_c";
+import Section_d from "./sections/Section_d";
 
 export default function Main_app(props: any) {
+  const inputRef = useRef<HTMLInputElement>(null);
   let handlerSetCity = props.handlerSetCity;
   const [city, setCity] = useState("");
+
   function handlerSubmit(event: FormEvent) {
     event.preventDefault();
     handlerSetCity(city);
+    if (inputRef.current) {
+      inputRef.current.value = "";
+    }
     setCity("");
   }
 
@@ -20,7 +27,7 @@ export default function Main_app(props: any) {
       <div className="flex w-full justify-center">
         <form
           onSubmit={handlerSubmit}
-          className="mt-5 flex text-[20px] w-full font-DM-semibold flex-col gap-3 desktop:flex-row max-w-[610px]"
+          className="mt-5 flex text-[20px] w-full font-DM-semibold flex-col gap-3 desktop:flex-row max-w-152.5"
         >
           <div className="flex gap-3 w-full p-3 focus-within:outline cursor-pointer text-own-neutral-0  bg-own-neutral-700 rounded-xl">
             <img
@@ -29,6 +36,7 @@ export default function Main_app(props: any) {
               alt="icono de lupa"
             />
             <input
+              ref={inputRef}
               type="text"
               name="search"
               onChange={(e) => setCity(e.target.value)}
@@ -36,21 +44,31 @@ export default function Main_app(props: any) {
               placeholder="Seach for a place..."
             />
           </div>
-          <button className="cursor-pointer bg-own-blue-500 w-full p-3  rounded-xl desktop:max-w-[120px]">
+          <button className="cursor-pointer bg-own-blue-500 w-full p-3  rounded-xl desktop:max-w-30">
             Search
           </button>
         </form>
       </div>
-      <div>
-        {/* <Section_a
-          city="Berlin"
-          country="Germany"
-          date="10 feb 2026"
-          temperature="19 C"
-          wheater="sunny"
-          key={20}
-        /> */}
-        <pre>{JSON.stringify(props, null, 2)}</pre>
+      <div
+        className="grid grid-cols-1 max-w-275
+        desktop-2:grid-cols-3 desktop-2:grid-rows-2 mt-10 text-3xl w-full gap-6"
+      >
+        {/* izquierda a, b, c */}
+        <div
+          className="desktop-2:col-span-2 desktop-2:row-span-2
+          grid grid-cols-1 desktop-2:gap-1
+          col-span-1
+          "
+        >
+          <Section_a info={props} />
+          <div className="pt-0 desktop-2:h-100 flex flex-col justify-between ">
+            <Section_b info={props} />
+            <Section_c info={props} />
+          </div>
+        </div>
+        {/* derecha d */}
+        <Section_d info={props} />
+        {/* <pre>{JSON.stringify(props, null, 2)}</pre> */}
       </div>
       <div></div>
     </>

@@ -131,6 +131,7 @@ export default function App() {
           handlerSetCity={handlerSetCity}
           coordenates={coordenates}
           weatherData={weatherData}
+          metricSistem={metricSistem}
         />
       ) : (
         <Api_error retryFn={handleRetry} />
