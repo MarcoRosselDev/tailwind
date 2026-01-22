@@ -71,15 +71,15 @@ export const fetch_weather = async (
 };
  */
 
-import { fetchWeatherApi } from "openmeteo";
+//import { fetchWeatherApi } from "openmeteo";
 //import { getWeatherCondition } from "../componentes/codigo_clima";
-
+/* 
 export const fetch_weather = async (lat: number, long: number) => {
   const params = {
     latitude: [lat],
     longitude: [long],
-    /*     daily: ["weather_code", "temperature_2m_max", "temperature_2m_min"],
-    hourly: ["", "weather_code", "temperature_2m"], */
+        daily: ["weather_code", "temperature_2m_max", "temperature_2m_min"],
+    hourly: ["", "weather_code", "temperature_2m"],
     current: [
       "temperature_2m",
       "weather_code",
@@ -134,4 +134,4 @@ export const fetch_weather = async (lat: number, long: number) => {
       temperatureMin: daily.variables(2)!.valuesArray()!,
     },
   };
-};
+}; */
