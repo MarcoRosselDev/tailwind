@@ -12,4 +12,7 @@ Magenta 400: hsl(300, 69%, 71%)
 @theme {
   --color-primary-purple: hsl(257, 40%, 49%);
   --color-primary-magenta:hsl(300, 69%, 71%);
+
+  /* 1440px max */
+  --breakpoint-own: 405px;
 }
