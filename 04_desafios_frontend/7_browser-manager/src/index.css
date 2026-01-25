@@ -1,3 +1,70 @@
 @import "tailwindcss";
 
 @custom-variant dark (&:where(.dark, .dark *));
+
+@font-face {
+  font-family: "NotoSans-Italic";
+  src: url("/fonts/NotoSans-Italic-VariableFont_wdth\,wght.ttf")
+    format("truetype");
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "NotoSans-variable";
+  src: url("/fonts/NotoSans-VariableFont_wdth\,wght.ttf")
+    format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "NotoSans-regular";
+  src: url("/fonts/static/NotoSans-Regular.ttf")
+    format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "NotoSans-medium";
+  src: url("/fonts/static/NotoSans-Medium.ttf")
+    format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "NotoSans-bold";
+  src: url("/fonts/static/NotoSans-Bold.ttf")
+    format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  --color-ks-nautral-900: hsl(227, 75%, 14%);
+  --color-ks-nautral-800: hsl(226, 25%, 17%);
+  --color-ks-nautral-700: hsl(225, 23%, 24%);
+  --color-ks-nautral-600: hsl(226, 11%, 37%);
+  --color-ks-nautral-300: hsl(0, 0%, 78%);
+  --color-ks-nautral-200: hsl(217, 61%, 90%);
+  --color-ks-nautral-100: hsl(0, 0%, 93%);
+  --color-ks-nautral-0: hsl(200, 60%, 99%);
+  
+  --color-ks-red-400: hsl(3, 86%, 64%);
+  --color-ks-red-500: hsl(3, 71%, 56%);
+  --color-ks-red-700: hsl(3, 77%, 44%);
+
+  --shadow-own: 0.1px 1px 2px 2px rgba(0, 0, 0, 0.1);
+
+  
+  --font-notoSans-bold: "NotoSans-bold";
+  --font-notoSans-medium: "NotoSans-medium";
+  --font-notoSans-regular: "NotoSans-regular";
+  --font-notoSans-variable: "NotoSans-variable";
+  --font-notoSans-italic: "NotoSans-Italic";
+}
