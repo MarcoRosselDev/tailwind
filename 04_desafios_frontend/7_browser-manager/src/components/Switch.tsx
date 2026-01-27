@@ -24,8 +24,8 @@ export default function Switch({
           w-10 h-5
           ${activo ? "bg-ks-red-700" : "bg-ks-nautral-300"}
           relative inline-flex items-center rounded-full
-          transition-colors duration-300 ease-in-out
-          focus:outline-none
+          focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-1
+          transition-colors duration-300 ease-in-out 
           cursor-pointer
         `}
       onClick={manejarClick}

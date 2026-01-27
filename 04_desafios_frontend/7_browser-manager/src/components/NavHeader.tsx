@@ -6,7 +6,11 @@ export default function NavHeader({
   handleTheme: (theme: "dark" | "light") => void;
 }) {
   return (
-    <header className="bg-ks-nautral-0 dark:bg-ks-nautral-800 rounded-lg p-2.5 shadow-own">
+    <header
+      className="md:max-w-260 
+     w-full
+    bg-ks-nautral-0 dark:bg-ks-nautral-800 rounded-lg p-2.5 shadow-own"
+    >
       <nav className="flex justify-between items-center">
         <div>
           <svg
@@ -39,7 +43,12 @@ export default function NavHeader({
           onClick={() =>
             theme === "dark" ? handleTheme("light") : handleTheme("dark")
           }
-          className="p-3.5 rounded-lg bg-ks-nautral-100 dark:bg-ks-nautral-700"
+          className="p-3.5 cursor-pointer hover:bg-ks-nautral-300
+          dark:hover:bg-ks-nautral-600
+          rounded-lg bg-ks-nautral-100 dark:bg-ks-nautral-700
+          focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-0 
+          focus:bg-ks-nautral-100 dark:focus:bg-ks-nautral-600
+          "
         >
           <img
             src={`${theme === "dark" ? "/images/icon-sun.svg" : "/images/icon-moon.svg"}`}
@@ -50,9 +59,3 @@ export default function NavHeader({
     </header>
   );
 }
-
-/* proximo a hacer:
-
-customizar los fonts
-y seguir con el header de pana y cheall
-*/
