@@ -1,10 +1,46 @@
-import { useEffect, useState, type FormEvent } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
+
+let f = [
+  {
+    pr: "Complete online JavaScript course",
+    id: 1,
+    checked: true,
+  },
+  {
+    pr: "Jog around the park 3x",
+    id: 2,
+    checked: false,
+  },
+  {
+    pr: "10 minutes meditation",
+    id: 3,
+    checked: false,
+  },
+  {
+    pr: "Read for 1 hour",
+    id: 4,
+    checked: false,
+  },
+  {
+    pr: "Pick up groceries",
+    id: 5,
+    checked: false,
+  },
+  {
+    pr: "Complete Todo App on Frontend Mentor",
+    id: 6,
+    checked: false,
+  },
+];
 
 function App() {
   const [theme, setTheme] = useState<"light" | "dark">("light");
-  const [cheked, setCheked] = useState<boolean>(false);
-  const [task, setTask] = useState<string | null>(null);
+  const inputRef = useRef(null);
+  const checkRef = useRef(null);
+  const [data, setData] = useState<any>([]);
+  //return savedData ? JSON.parse(savedData) : f; // Parsear JSON
 
+  // use Effect del theme = "dark" o "ligth"
   useEffect(() => {
     document.documentElement.classList.toggle(
       "dark",
@@ -20,6 +56,28 @@ function App() {
     }
   }, [theme]);
 
+  // use Effect de la data en el localStorage
+  useEffect(() => {
+    const savedData = localStorage.getItem("myData");
+    console.log(savedData ? true : false, savedData?.length);
+
+    if (savedData) {
+      if (savedData.length > 0) {
+        setData(JSON.parse(savedData));
+        console.log(JSON.parse(savedData));
+      } else {
+        localStorage.setItem("myData", JSON.stringify(f));
+        setData(f);
+      }
+    } else {
+      localStorage.setItem("myData", JSON.stringify(f));
+      setData(f);
+    }
+  }, []);
+  useEffect(() => {
+    localStorage.setItem("myData", JSON.stringify(data)); // Stringify
+  }, [data]);
+
   function HandleTheme(theme: "dark" | "light") {
     setTheme(theme);
     localStorage.theme = theme;
@@ -27,10 +85,40 @@ function App() {
 
   function handleSubmit(event: FormEvent) {
     event.preventDefault();
-    setCheked(false);
-    setTask(null);
-    console.log({ cheked, task });
+    //inputRef.
+    /* if (inputRef.current.value) {
+      let value = inputRef.current.value;
+      let value_check = checkRef.current.value;
+      console.log({ value_check, value });
+      inputRef.current.value = "";
+      value_check.current.value = "";
+      //setCheked(false);
+    } */
+    console.log("escribe algo imbesil");
   }
+
+  function handleDelete(id: number) {
+    console.log(id);
+  }
+
+  //let tasks = data.map((info) => console.log(info));
+
+  for (let i = 0; i < data.length; i++) {
+    console.log(data[i]);
+  }
+
+  console.log(data);
+
+  /*     ({ pr, id, checked }: { pr: string; id: number; checked: boolean }) => {
+    <Task
+      checked={checked}
+      id={id}
+      pr={pr}
+      key={id}
+      handleDelete={handleDelete}
+    />;
+  },
+*/
 
   return (
     <div className="min-h-dvh bg-primary-gray-50">
@@ -62,11 +150,12 @@ function App() {
           >
             <input
               type="checkbox"
-              onChange={() => setCheked((prev) => !prev)}
+              ref={checkRef}
+              /* checked={false} */
               className={`appearance-none border 
               border-primary-gray-300 w-4 h-4 rounded-full 
               checked:bg-primary-purple-600
-              ${cheked ? "" : ""}
+              ${checkRef ? "" : ""}
               transition-colors
               duration-200
               cursor-pointer
@@ -76,80 +165,39 @@ function App() {
               type="text"
               name=""
               id=""
-              onChange={(e) => setTask(e.target.value)}
+              ref={inputRef}
               placeholder="Create a new todo..."
               className="bg-primary-gray-50 w-full"
             />
           </form>
         </div>
-        <div>
-          <div className="flex">
-            <input type="checkbox" name="" id="" />
-            <p>job around the park 3x</p>
-            <button>
-              <img src="/images/icon-cross.svg" alt="icon of a cross" />
-            </button>
-          </div>
-          <div className="flex">
-            <input type="checkbox" name="" id="" />
-            <p>job around the park 3x</p>
-            <button>
-              <img src="/images/icon-cross.svg" alt="icon of a cross" />
-            </button>
-          </div>
-          <div className="flex">
-            <input type="checkbox" name="" id="" />
-            <p>job around the park 3x</p>
-            <button>
-              <img src="/images/icon-cross.svg" alt="icon of a cross" />
-            </button>
-          </div>
-          <div className="flex">
-            <input type="checkbox" name="" id="" />
-            <p>job around the park 3x</p>
-            <button>
-              <img src="/images/icon-cross.svg" alt="icon of a cross" />
-            </button>
-          </div>
-          <div className="flex">
-            <input type="checkbox" name="" id="" />
-            <p>job around the park 3x</p>
-            <button>
-              <img src="/images/icon-cross.svg" alt="icon of a cross" />
-            </button>
-          </div>
-          <div className="flex">
-            <input type="checkbox" name="" id="" />
-            <p>job around the park 3x</p>
-            <button>
-              <img src="/images/icon-cross.svg" alt="icon of a cross" />
-            </button>
-          </div>
-          <div className="flex">
-            <input type="checkbox" name="" id="" />
-            <p>job around the park 3x</p>
-            <button>
-              <img src="/images/icon-cross.svg" alt="icon of a cross" />
-            </button>
-          </div>
-          <div className="flex">
-            <input type="checkbox" name="" id="" />
-            <p>job around the park 3x</p>
-            <button>
-              <img src="/images/icon-cross.svg" alt="icon of a cross" />
-            </button>
-          </div>
-          <div className="flex">
-            <input type="checkbox" name="" id="" />
-            <p>job around the park 3x</p>
-            <button>
-              <img src="/images/icon-cross.svg" alt="icon of a cross" />
-            </button>
-          </div>
-        </div>
+        {/* <div>{tasks}</div> */}
       </div>
     </div>
   );
 }
 
 export default App;
+
+/* function Task({
+  pr,
+  checked,
+  handleDelete,
+  id,
+}: {
+  pr: string;
+  checked: boolean;
+  handleDelete: (id: number) => void;
+  id: number;
+}) {
+  return (
+    <div className="flex">
+      <input type="checkbox" name="" id="" checked={checked} />
+      <p>{pr}</p>
+      <button onClick={() => handleDelete(id)}>
+        <img src="/images/icon-cross.svg" alt="icon of a cross" />
+      </button>
+    </div>
+  );
+}
+ */
