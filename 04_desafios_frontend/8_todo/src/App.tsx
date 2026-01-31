@@ -38,7 +38,6 @@ function App() {
   const inputRef = useRef(null);
   const checkRef = useRef(null);
   const [data, setData] = useState<any>([]);
-  //return savedData ? JSON.parse(savedData) : f; // Parsear JSON
 
   // use Effect del theme = "dark" o "ligth"
   useEffect(() => {
@@ -59,24 +58,26 @@ function App() {
   // use Effect de la data en el localStorage
   useEffect(() => {
     const savedData = localStorage.getItem("myData");
-    console.log(savedData ? true : false, savedData?.length);
-
     if (savedData) {
-      if (savedData.length > 0) {
-        setData(JSON.parse(savedData));
-        console.log(JSON.parse(savedData));
+      let arr_ls = JSON.parse(savedData);
+      if (arr_ls.length > 0) {
+        setData(arr_ls);
+        console.log("mayor a 0", arr_ls, data);
       } else {
-        localStorage.setItem("myData", JSON.stringify(f));
+        console.log(arr_ls, arr_ls.length);
         setData(f);
       }
-    } else {
-      localStorage.setItem("myData", JSON.stringify(f));
-      setData(f);
     }
   }, []);
-  useEffect(() => {
+
+  /* useEffect(() => {
     localStorage.setItem("myData", JSON.stringify(data)); // Stringify
-  }, [data]);
+    console.log("localStorage actualizado... with :", data);
+  }, [data]); */
+  function setLocalStorageData(info: any) {
+    localStorage.setItem("myData", JSON.stringify(info)); // Stringify
+    console.log("localStorage actualizado... with :", info);
+  }
 
   function HandleTheme(theme: "dark" | "light") {
     setTheme(theme);
@@ -98,27 +99,28 @@ function App() {
   }
 
   function handleDelete(id: number) {
-    console.log(id);
+    let indexToRemove = data.findIndex((el: { id: number }) => el.id === id);
+    if (indexToRemove !== -1) {
+      let tx = [...data];
+      tx.splice(indexToRemove, 1);
+      setData(tx);
+      setLocalStorageData(tx);
+    }
   }
 
-  //let tasks = data.map((info) => console.log(info));
-
-  for (let i = 0; i < data.length; i++) {
-    console.log(data[i]);
-  }
-
-  console.log(data);
-
-  /*     ({ pr, id, checked }: { pr: string; id: number; checked: boolean }) => {
-    <Task
-      checked={checked}
-      id={id}
-      pr={pr}
-      key={id}
-      handleDelete={handleDelete}
-    />;
-  },
-*/
+  let tasks = data.map(
+    ({ pr, checked, id }: { pr: string; checked: boolean; id: number }) => {
+      return (
+        <Task
+          handleDelete={handleDelete}
+          key={id}
+          checked={checked}
+          id={id}
+          pr={pr}
+        />
+      );
+    },
+  );
 
   return (
     <div className="min-h-dvh bg-primary-gray-50">
@@ -171,7 +173,7 @@ function App() {
             />
           </form>
         </div>
-        {/* <div>{tasks}</div> */}
+        <div>{tasks}</div>
       </div>
     </div>
   );
@@ -179,7 +181,7 @@ function App() {
 
 export default App;
 
-/* function Task({
+function Task({
   pr,
   checked,
   handleDelete,
@@ -200,4 +202,3 @@ export default App;
     </div>
   );
 }
- */
