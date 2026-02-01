@@ -35,9 +35,9 @@ let f = [
 
 function App() {
   const [theme, setTheme] = useState<"light" | "dark">("light");
-  const inputRef = useRef(null);
-  const checkRef = useRef(null);
   const [data, setData] = useState<any>([]);
+  const formulario = useRef<null | HTMLFormElement>(null);
+  const [idCounter, setIdCounter] = useState(10);
 
   // use Effect del theme = "dark" o "ligth"
   useEffect(() => {
@@ -70,10 +70,6 @@ function App() {
     }
   }, []);
 
-  /* useEffect(() => {
-    localStorage.setItem("myData", JSON.stringify(data)); // Stringify
-    console.log("localStorage actualizado... with :", data);
-  }, [data]); */
   function setLocalStorageData(info: any) {
     localStorage.setItem("myData", JSON.stringify(info)); // Stringify
     console.log("localStorage actualizado... with :", info);
@@ -86,16 +82,37 @@ function App() {
 
   function handleSubmit(event: FormEvent) {
     event.preventDefault();
-    //inputRef.
-    /* if (inputRef.current.value) {
-      let value = inputRef.current.value;
-      let value_check = checkRef.current.value;
-      console.log({ value_check, value });
-      inputRef.current.value = "";
-      value_check.current.value = "";
-      //setCheked(false);
-    } */
-    console.log("escribe algo imbesil");
+    //console.log(formulario.current);
+    if (formulario.current) {
+      const datos = new FormData(formulario.current);
+      //console.log(...datos.entries());
+      // do something with the data
+
+      const objetoDatos: any = Object.fromEntries([...datos.entries()]);
+      console.log(objetoDatos);
+
+      // console.log(objetoDatos);
+      if (!objetoDatos.task.trim()) {
+        return console.log("vacío");
+      }
+
+      const isChecked = objetoDatos.check === "on";
+
+      let newTask = {
+        pr: objetoDatos.task,
+        id: idCounter,
+        //checked: objetoDatos.check ? objetoDatos.check : false,
+        checked: isChecked,
+      };
+      setIdCounter((prev) => prev + 1);
+
+      let prev = [...data];
+      prev.push(newTask);
+      setData(prev);
+      setLocalStorageData(prev);
+
+      formulario.current.reset();
+    }
   }
 
   function handleDelete(id: number) {
@@ -128,7 +145,7 @@ function App() {
         className="
         bg-[url(/images/bg-mobile-light.jpg)]
         dark:bg-[url(/images/bg-mobile-dark.jpg)]
-      p-7 pt-9 bg-no-repeat min-h-dvh dark:bg-primary-navy-950"
+        p-7 pt-9 bg-no-repeat min-h-dvh dark:bg-primary-navy-950"
       >
         <div className="flex justify-between">
           <h1>TODO</h1>
@@ -146,18 +163,18 @@ function App() {
         </div>
         <div>
           <form
+            ref={formulario}
             className=" bg-primary-gray-50 p-2 pl-4 pr-4 flex
           gap-3 rounded-sm items-center"
             onSubmit={handleSubmit}
           >
             <input
               type="checkbox"
-              ref={checkRef}
+              name="check"
               /* checked={false} */
               className={`appearance-none border 
               border-primary-gray-300 w-4 h-4 rounded-full 
               checked:bg-primary-purple-600
-              ${checkRef ? "" : ""}
               transition-colors
               duration-200
               cursor-pointer
@@ -165,9 +182,8 @@ function App() {
             />
             <input
               type="text"
-              name=""
+              name="task"
               id=""
-              ref={inputRef}
               placeholder="Create a new todo..."
               className="bg-primary-gray-50 w-full"
             />
@@ -192,9 +208,21 @@ function Task({
   handleDelete: (id: number) => void;
   id: number;
 }) {
+  const [ch, setCh] = useState(checked);
+
+  function handleChecked() {
+    setCh((prev) => !prev);
+  }
+
   return (
     <div className="flex">
-      <input type="checkbox" name="" id="" checked={checked} />
+      <input
+        type="checkbox"
+        name=""
+        id=""
+        checked={ch}
+        onChange={handleChecked}
+      />
       <p>{pr}</p>
       <button onClick={() => handleDelete(id)}>
         <img src="/images/icon-cross.svg" alt="icon of a cross" />
