@@ -58,15 +58,19 @@ function App() {
   // use Effect de la data en el localStorage
   useEffect(() => {
     const savedData = localStorage.getItem("myData");
+    //console.log(savedData);
     if (savedData) {
       let arr_ls = JSON.parse(savedData);
       if (arr_ls.length > 0) {
         setData(arr_ls);
-        console.log("mayor a 0", arr_ls, data);
+        //console.log("mayor a 0", arr_ls, data);
       } else {
-        console.log(arr_ls, arr_ls.length);
+        //console.log(arr_ls, arr_ls.length);
         setData(f);
       }
+    } else {
+      setData(f);
+      setLocalStorageData(f);
     }
   }, []);
 
@@ -125,6 +129,17 @@ function App() {
     }
   }
 
+  function handleStateCheck(id: number, state: boolean) {
+    setData((prev: any) => {
+      let tx = [...prev];
+      let index = tx.findIndex((el) => el.id === id);
+      tx[index].checked = state;
+      //console.log("on handleStateCheck", tx);
+      setLocalStorageData(tx);
+      return tx;
+    });
+  }
+
   let tasks = data.map(
     ({ pr, checked, id }: { pr: string; checked: boolean; id: number }) => {
       return (
@@ -134,6 +149,7 @@ function App() {
           checked={checked}
           id={id}
           pr={pr}
+          fn={handleStateCheck}
         />
       );
     },
@@ -202,16 +218,20 @@ function Task({
   checked,
   handleDelete,
   id,
+  fn,
 }: {
   pr: string;
   checked: boolean;
   handleDelete: (id: number) => void;
   id: number;
+  fn: (id: number, state: boolean) => void;
 }) {
   const [ch, setCh] = useState(checked);
 
   function handleChecked() {
+    fn(id, !ch);
     setCh((prev) => !prev);
+    //console.log(!ch);
   }
 
   return (
