@@ -37,7 +37,7 @@ function App() {
   const [theme, setTheme] = useState<"light" | "dark">("light");
   const [data, setData] = useState<any>([]);
   const formulario = useRef<null | HTMLFormElement>(null);
-  const [idCounter, setIdCounter] = useState(10);
+  const [idCounter, setIdCounter] = useState(0);
 
   // use Effect del theme = "dark" o "ligth"
   useEffect(() => {
@@ -55,28 +55,35 @@ function App() {
     }
   }, [theme]);
 
-  // use Effect de la data en el localStorage
+  // use Effect get data from localStorage
   useEffect(() => {
     const savedData = localStorage.getItem("myData");
-    //console.log(savedData);
     if (savedData) {
       let arr_ls = JSON.parse(savedData);
       if (arr_ls.length > 0) {
         setData(arr_ls);
-        //console.log("mayor a 0", arr_ls, data);
+        // nos aseguramos de que el contador de id sea mayor al id mas alto del array salbado en localStorage
+        let biger_id = 0;
+        for (let i = 0; i < arr_ls.length; i++) {
+          if (arr_ls[i].id >= biger_id) {
+            biger_id = arr_ls[i].id + 1;
+          }
+        }
+        setIdCounter(biger_id);
       } else {
-        //console.log(arr_ls, arr_ls.length);
         setData(f);
+        setIdCounter(f[f.length - 1].id + 1);
       }
     } else {
       setData(f);
+      setIdCounter(f[f.length - 1].id + 1);
       setLocalStorageData(f);
     }
   }, []);
 
   function setLocalStorageData(info: any) {
     localStorage.setItem("myData", JSON.stringify(info)); // Stringify
-    console.log("localStorage actualizado... with :", info);
+    //console.log("localStorage actualizado... with :", info);
   }
 
   function HandleTheme(theme: "dark" | "light") {
@@ -86,14 +93,9 @@ function App() {
 
   function handleSubmit(event: FormEvent) {
     event.preventDefault();
-    //console.log(formulario.current);
     if (formulario.current) {
       const datos = new FormData(formulario.current);
-      //console.log(...datos.entries());
-      // do something with the data
-
       const objetoDatos: any = Object.fromEntries([...datos.entries()]);
-      console.log(objetoDatos);
 
       // console.log(objetoDatos);
       if (!objetoDatos.task.trim()) {
@@ -156,22 +158,29 @@ function App() {
   );
 
   return (
-    <div className="min-h-dvh bg-primary-gray-50">
+    <div className="min-h-dvh bg-primary-gray-100">
       <div
         className="
         bg-[url(/images/bg-mobile-light.jpg)]
         dark:bg-[url(/images/bg-mobile-dark.jpg)]
-        p-7 pt-9 bg-no-repeat min-h-dvh dark:bg-primary-navy-950"
+        p-6 pt-9 bg-no-repeat min-h-dvh dark:bg-primary-navy-950"
       >
-        <div className="flex justify-between">
-          <h1>TODO</h1>
+        <div className="flex justify-between mt-2 mb-6">
+          <h1
+            className="text-white text-[22px] font-bold
+          font-josefine-400 tracking-[0.5rem]
+          "
+          >
+            TODO
+          </h1>
           <button
-            className=""
+            className="p-0 pl-4"
             onClick={() =>
               theme === "dark" ? HandleTheme("light") : HandleTheme("dark")
             }
           >
             <img
+              className="w-5 h-5"
               src={`${theme === "dark" ? "/images/icon-sun.svg" : "/images/icon-moon.svg"}`}
               alt="image of a moon or a sun depending of the theme design"
             />
@@ -181,7 +190,7 @@ function App() {
           <form
             ref={formulario}
             className=" bg-primary-gray-50 p-2 pl-4 pr-4 flex
-          gap-3 rounded-sm items-center"
+          gap-3 rounded-sm items-center h-11"
             onSubmit={handleSubmit}
           >
             <input
@@ -190,7 +199,12 @@ function App() {
               /* checked={false} */
               className={`appearance-none border 
               border-primary-gray-300 w-4 h-4 rounded-full 
-              checked:bg-primary-purple-600
+              checked:bg-linear-to-br checked:from-blue-400 checked:via-blue-300 checked:to-purple-500
+
+              checked:mask-[url('/images/icon-check.svg')] 
+              checked:mask-no-repeat checked:mask-center
+            checked:[mask-size:60%]"
+
               transition-colors
               duration-200
               cursor-pointer
@@ -205,7 +219,12 @@ function App() {
             />
           </form>
         </div>
-        <div>{tasks}</div>
+        <div
+          className="mt-3 bg-primary-gray-50 
+          gap-3 rounded-sm items-center p-2"
+        >
+          {tasks}
+        </div>
       </div>
     </div>
   );
