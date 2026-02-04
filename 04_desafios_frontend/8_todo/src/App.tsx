@@ -187,27 +187,48 @@ function App() {
           </button>
         </div>
         <div>
+          <div
+            className="border
+          bg-linear-to-br from-blue-400 via-blue-300 to-purple-500
+          "
+          >
+            <div
+              className="
+            bg-[url('/images/icon-check.svg')]
+            bg-no-repeat
+            bg-center
+            mask-exclude
+            "
+            >
+              <p>testing div with bg color gradiant</p>
+            </div>
+          </div>
           <form
             ref={formulario}
             className=" bg-primary-gray-50 p-2 pl-4 pr-4 flex
           gap-3 rounded-sm items-center h-11"
             onSubmit={handleSubmit}
           >
+            {/* <svg xmlns="http://www.w3.org/2000/svg" width="11" height="9">
+              <path
+                fill="black"
+                className="w-6 h-6 border"
+                d="M1 4.304L3.696 7l6-6"
+              />
+            </svg> */}
             <input
               type="checkbox"
               name="check"
-              /* checked={false} */
-              className={`appearance-none border 
-              border-primary-gray-300 w-4 h-4 rounded-full 
-              checked:bg-linear-to-br checked:from-blue-400 checked:via-blue-300 checked:to-purple-500
+              className={`
 
-              checked:mask-[url('/images/icon-check.svg')] 
-              checked:mask-no-repeat checked:mask-center
-            checked:[mask-size:60%]"
-
-              transition-colors
-              duration-200
-              cursor-pointer
+                  appearance-none w-5 h-5 rounded-full border border-gray-300 
+                  checked:bg-[url('/images/icon-check.svg'),linear-gradient(330deg,#a465c6,#62abff)]
+                  bg-center bg-no-repeat
+                  focus:outline-none 
+                  transition-colors
+                  duration-200
+                  cursor-pointer
+                  focus:border-primary-gray-600   
               `}
             />
             <input
@@ -269,3 +290,36 @@ function Task({
     </div>
   );
 }
+
+/* 
+
+appearance-none border 
+border-primary-gray-300 w-4 h-4 rounded-full 
+checked:bg-linear-to-br checked:from-blue-400 checked:via-blue-300 checked:to-purple-500
+checked:mask-[url('/images/icon-check.svg')]
+checked:mask-no-repeat
+checked:mask-center
+checked:mask-size-[60%]
+checked:mask-exclude
+transition-colors
+duration-200
+cursor-pointer
+<input
+              type="checkbox"
+              name="check"
+              className={`appearance-none border 
+              border-primary-gray-300 w-4 h-4 rounded-full 
+              checked:bg-linear-to-br checked:from-blue-400 checked:via-blue-300 checked:to-purple-500
+
+
+
+              checked:mask-[url('/images/icon-check.svg')] 
+              checked:mask-no-repeat checked:mask-center
+            checked:[mask-size:60%]"
+
+              transition-colors
+              duration-200
+              cursor-pointer
+              `}
+            />
+*/
