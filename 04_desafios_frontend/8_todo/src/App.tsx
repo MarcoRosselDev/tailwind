@@ -142,6 +142,21 @@ function App() {
     });
   }
 
+  function handleDeleteCompleted() {
+    setData((prev: any) => {
+      let new_data = [];
+      for (let i = 0; i < prev.length; i++) {
+        if (prev[i].checked) {
+          //console.log("delete this one white id : ", data[i].id);
+        } else {
+          new_data.push(prev[i]);
+        }
+      }
+      setLocalStorageData(new_data);
+      return new_data;
+    });
+  }
+
   let tasks = data.map(
     ({ pr, checked, id }: { pr: string; checked: boolean; id: number }) => {
       return (
@@ -158,12 +173,12 @@ function App() {
   );
 
   return (
-    <div className="min-h-dvh bg-primary-gray-100">
+    <div className="min-h-dvh bg-primary-gray-100 text-[12px] font-josefine-400">
       <div
         className="
         bg-[url(/images/bg-mobile-light.jpg)]
         dark:bg-[url(/images/bg-mobile-dark.jpg)]
-        p-6 pt-9 bg-no-repeat min-h-dvh dark:bg-primary-navy-950"
+        p-6 pt-9 bg-no-repeat min-h-dvh dark:bg-primary-navy-950 text-center"
       >
         <div className="flex justify-between mt-2 mb-6">
           <h1
@@ -187,49 +202,24 @@ function App() {
           </button>
         </div>
         <div>
-          <div
-            className="border
-          bg-linear-to-br from-blue-400 via-blue-300 to-purple-500
-          "
-          >
-            <div
-              className="
-            bg-[url('/images/icon-check.svg')]
-            bg-no-repeat
-            bg-center
-            mask-exclude
-            "
-            >
-              <p>testing div with bg color gradiant</p>
-            </div>
-          </div>
           <form
             ref={formulario}
-            className=" bg-primary-gray-50 p-2 pl-4 pr-4 flex
-          gap-3 rounded-sm items-center h-11"
+            className=" bg-primary-gray-50 p-4 flex
+          gap-3 rounded-sm items-center h-13"
             onSubmit={handleSubmit}
           >
-            {/* <svg xmlns="http://www.w3.org/2000/svg" width="11" height="9">
-              <path
-                fill="black"
-                className="w-6 h-6 border"
-                d="M1 4.304L3.696 7l6-6"
-              />
-            </svg> */}
             <input
               type="checkbox"
               name="check"
-              className={`
-
-                  appearance-none w-5 h-5 rounded-full border border-gray-300 
-                  checked:bg-[url('/images/icon-check.svg'),linear-gradient(330deg,#a465c6,#62abff)]
-                  bg-center bg-no-repeat
-                  focus:outline-none 
-                  transition-colors
-                  duration-200
-                  cursor-pointer
-                  focus:border-primary-gray-600   
-              `}
+              className="
+              appearance-none w-5 h-5 rounded-full border border-gray-300 
+              checked:bg-[url('/images/icon-check.svg'),linear-gradient(330deg,#a465c6,#62abff)]
+              bg-center bg-no-repeat
+              focus:outline-none 
+              transition-colors
+              duration-200
+              cursor-pointer
+              focus:border-primary-gray-600"
             />
             <input
               type="text"
@@ -242,10 +232,36 @@ function App() {
         </div>
         <div
           className="mt-3 bg-primary-gray-50 
-          gap-3 rounded-sm items-center p-2"
+           rounded-sm items-center"
         >
           {tasks}
+          {/* las part with count */}
+          <div
+            className="flex p-4 border-b justify-between border-b-primary-gray-300
+          text-primary-gray-600
+          "
+          >
+            <p>{data.length} items left</p>
+            <button className="cursor-pointer" onClick={handleDeleteCompleted}>
+              clear Completed
+            </button>
+          </div>
         </div>
+        {/* las var to select all, active, completed */}
+        <div
+          className="mt-3 bg-primary-gray-50 
+           rounded-sm items-center p-4 flex justify-center gap-5
+           font-bold text-primary-gray-600
+           "
+        >
+          <button>All</button>
+          <button>Active</button>
+          <button>Completed</button>
+        </div>
+        {/*  */}
+        <h2 className="mt-9 mb-8 text-primary-gray-600 font-semibold">
+          Drag and drop to reorder list
+        </h2>
       </div>
     </div>
   );
@@ -275,51 +291,40 @@ function Task({
   }
 
   return (
-    <div className="flex">
+    <div className="flex p-4 border-b border-b-primary-gray-300">
       <input
         type="checkbox"
+        className="
+        appearance-none w-5 h-5 rounded-full border border-gray-300 
+        checked:bg-[url('/images/icon-check.svg'),linear-gradient(330deg,#a465c6,#62abff)]
+        bg-center bg-no-repeat
+        focus:outline-none 
+        transition-colors
+        duration-200
+        cursor-pointer
+        focus:border-primary-gray-600"
         name=""
         id=""
         checked={ch}
         onChange={handleChecked}
       />
-      <p>{pr}</p>
-      <button onClick={() => handleDelete(id)}>
-        <img src="/images/icon-cross.svg" alt="icon of a cross" />
-      </button>
+      <div className="ml-3 flex w-full justify-between">
+        <p
+          className={`font-josefine-400  font-semibold
+          ${ch ? "text-primary-gray-300 line-through decoration-primary-gray-600" : "text-primary-gray-600"}
+          
+          `}
+        >
+          {pr}
+        </p>
+        <button className="cursor-pointer" onClick={() => handleDelete(id)}>
+          <img
+            src="/images/icon-cross.svg"
+            className=" w-3.5 h-3.5"
+            alt="icon of a cross"
+          />
+        </button>
+      </div>
     </div>
   );
 }
-
-/* 
-
-appearance-none border 
-border-primary-gray-300 w-4 h-4 rounded-full 
-checked:bg-linear-to-br checked:from-blue-400 checked:via-blue-300 checked:to-purple-500
-checked:mask-[url('/images/icon-check.svg')]
-checked:mask-no-repeat
-checked:mask-center
-checked:mask-size-[60%]
-checked:mask-exclude
-transition-colors
-duration-200
-cursor-pointer
-<input
-              type="checkbox"
-              name="check"
-              className={`appearance-none border 
-              border-primary-gray-300 w-4 h-4 rounded-full 
-              checked:bg-linear-to-br checked:from-blue-400 checked:via-blue-300 checked:to-purple-500
-
-
-
-              checked:mask-[url('/images/icon-check.svg')] 
-              checked:mask-no-repeat checked:mask-center
-            checked:[mask-size:60%]"
-
-              transition-colors
-              duration-200
-              cursor-pointer
-              `}
-            />
-*/
