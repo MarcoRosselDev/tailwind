@@ -38,6 +38,9 @@ function App() {
   const [data, setData] = useState<any>([]);
   const formulario = useRef<null | HTMLFormElement>(null);
   const [idCounter, setIdCounter] = useState(0);
+  const [showList, setShowList] = useState<"All" | "Active" | "Completed">(
+    "All",
+  );
 
   // use Effect del theme = "dark" o "ligth"
   useEffect(() => {
@@ -167,6 +170,7 @@ function App() {
           id={id}
           pr={pr}
           fn={handleStateCheck}
+          showList={showList}
         />
       );
     },
@@ -237,8 +241,8 @@ function App() {
           {tasks}
           {/* las part with count */}
           <div
-            className="flex p-4 border-b justify-between border-b-primary-gray-300
-          text-primary-gray-600
+            className="flex p-4  justify-between
+          text-primary-gray-600 
           "
           >
             <p>{data.length} items left</p>
@@ -254,12 +258,27 @@ function App() {
            font-bold text-primary-gray-600
            "
         >
-          <button>All</button>
-          <button>Active</button>
-          <button>Completed</button>
+          <button
+            className={`${showList === "All" ? "text-blue-500" : ""} hover:text-blue-500 cursor-pointer`}
+            onClick={() => setShowList("All")}
+          >
+            All
+          </button>
+          <button
+            className={`${showList === "Active" ? "text-blue-500" : ""} hover:text-blue-500 cursor-pointer`}
+            onClick={() => setShowList("Active")}
+          >
+            Active
+          </button>
+          <button
+            className={`${showList === "Completed" ? "text-blue-500" : ""} hover:text-blue-500 cursor-pointer`}
+            onClick={() => setShowList("Completed")}
+          >
+            Completed
+          </button>
         </div>
         {/*  */}
-        <h2 className="mt-9 mb-8 text-primary-gray-600 font-semibold">
+        <h2 className="mt-9 mb-8 text-gray-400 font-semibold">
           Drag and drop to reorder list
         </h2>
       </div>
@@ -275,23 +294,32 @@ function Task({
   handleDelete,
   id,
   fn,
+  showList,
 }: {
   pr: string;
   checked: boolean;
   handleDelete: (id: number) => void;
   id: number;
   fn: (id: number, state: boolean) => void;
+  showList: string;
 }) {
   const [ch, setCh] = useState(checked);
 
   function handleChecked() {
     fn(id, !ch);
     setCh((prev) => !prev);
-    //console.log(!ch);
   }
 
+  let checkActive =
+    showList === "All" || (showList === "Active" && ch === false);
+  let checkInactives = showList === "Completed" && ch;
+
   return (
-    <div className="flex p-4 border-b border-b-primary-gray-300">
+    <div
+      className={`
+    ${checkInactives ? "" : checkActive ? "" : "hidden"}
+    flex p-4 border-b border-b-primary-gray-300`}
+    >
       <input
         type="checkbox"
         className="

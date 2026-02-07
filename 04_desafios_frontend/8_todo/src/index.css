@@ -1,7 +1,16 @@
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital@0;1&display=swap');
-
+/* @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital@0;1&display=swap');
+ */
 @custom-variant dark (&:where(.dark, .dark *));
+
+@font-face {
+  font-family: "josefinSans";
+  src: url("/public/fonts/static/JosefinSans-Regular.ttf")
+    format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
 
 
 @theme {
@@ -26,5 +35,6 @@
   --color-primary-purple-800: hsl(237, 14%, 26%);
 
   /* fonts */
-  --font-josefine-400: "Josefin Sans", sans-serif;
+  --font-josefine-400: "josefinSans";
+ /*  --font-josefine-400: "Josefin Sans", sans-serif; */
 }
