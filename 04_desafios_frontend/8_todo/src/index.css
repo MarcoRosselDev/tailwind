@@ -5,7 +5,7 @@
 
 @font-face {
   font-family: "josefinSans";
-  src: url("/public/fonts/static/JosefinSans-Regular.ttf")
+  src: url("/fonts/static/JosefinSans-Regular.ttf")
     format("truetype");
   font-weight: 400;
   font-style: normal;

@@ -1,4 +1,18 @@
 import { useEffect, useRef, useState, type FormEvent } from "react";
+import {
+  DndContext,
+  closestCenter,
+  KeyboardSensor,
+  PointerSensor,
+  useSensor,
+  useSensors,
+} from "@dnd-kit/core";
+import {
+  arrayMove,
+  SortableContext,
+  sortableKeyboardCoordinates,
+  verticalListSortingStrategy,
+} from "@dnd-kit/sortable";
 
 let f = [
   {
@@ -84,6 +98,13 @@ function App() {
     }
   }, []);
 
+  const sensors = useSensors(
+    useSensor(PointerSensor),
+    useSensor(KeyboardSensor, {
+      coordinateGetter: sortableKeyboardCoordinates,
+    }),
+  );
+
   function setLocalStorageData(info: any) {
     localStorage.setItem("myData", JSON.stringify(info)); // Stringify
     //console.log("localStorage actualizado... with :", info);
@@ -160,7 +181,24 @@ function App() {
     });
   }
 
-  let tasks = data.map(
+  function handleDragEnd(event) {
+    const { active, over } = event;
+    //console.log(event);
+
+    if (active.id !== over.id) {
+      setData((items) => {
+        //const oldIndex = items.indexOf(active.id);
+        const oldIndex = items.findIndex((item) => item.id === active.id);
+        //const newIndex = items.indexOf(over.id);
+        const newIndex = items.findIndex((item) => item.id === over.id);
+
+        return arrayMove(items, oldIndex, newIndex);
+      });
+      setLocalStorageData(data);
+    }
+  }
+
+  /* let tasks = data.map(
     ({ pr, checked, id }: { pr: string; checked: boolean; id: number }) => {
       return (
         <Task
@@ -174,7 +212,7 @@ function App() {
         />
       );
     },
-  );
+  ); */
 
   return (
     <div className="min-h-dvh bg-primary-gray-100 text-[12px] font-josefine-400">
@@ -238,7 +276,41 @@ function App() {
           className="mt-3 bg-primary-gray-50 
            rounded-sm items-center"
         >
-          {tasks}
+          <DndContext
+            sensors={sensors}
+            collisionDetection={closestCenter}
+            onDragEnd={handleDragEnd}
+          >
+            <SortableContext
+              items={data}
+              strategy={verticalListSortingStrategy}
+            >
+              {data.map(
+                ({
+                  pr,
+                  checked,
+                  id,
+                }: {
+                  pr: string;
+                  checked: boolean;
+                  id: number;
+                }) => {
+                  return (
+                    <SortableItem
+                      key={id}
+                      id={id}
+                      pr={pr}
+                      checked={checked}
+                      handleDelete={handleDelete}
+                      fn={handleStateCheck}
+                      showList={showList}
+                    />
+                  );
+                },
+              )}
+            </SortableContext>
+          </DndContext>
+          {/* {tasks} */}
           {/* las part with count */}
           <div
             className="flex p-4  justify-between
@@ -316,6 +388,93 @@ function Task({
 
   return (
     <div
+      className={`
+    ${checkInactives ? "" : checkActive ? "" : "hidden"}
+    flex p-4 border-b border-b-primary-gray-300`}
+    >
+      <input
+        type="checkbox"
+        className="
+        appearance-none w-5 h-5 rounded-full border border-gray-300 
+        checked:bg-[url('/images/icon-check.svg'),linear-gradient(330deg,#a465c6,#62abff)]
+        bg-center bg-no-repeat
+        focus:outline-none 
+        transition-colors
+        duration-200
+        cursor-pointer
+        focus:border-primary-gray-600"
+        name=""
+        id=""
+        checked={ch}
+        onChange={handleChecked}
+      />
+      <div className="ml-3 flex w-full justify-between">
+        <p
+          className={`font-josefine-400  font-semibold
+          ${ch ? "text-primary-gray-300 line-through decoration-primary-gray-600" : "text-primary-gray-600"}
+          
+          `}
+        >
+          {pr}
+        </p>
+        <button className="cursor-pointer" onClick={() => handleDelete(id)}>
+          <img
+            src="/images/icon-cross.svg"
+            className=" w-3.5 h-3.5"
+            alt="icon of a cross"
+          />
+        </button>
+      </div>
+    </div>
+  );
+}
+
+import { useSortable } from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
+
+function SortableItem({
+  pr,
+  checked,
+  handleDelete,
+  id,
+  fn,
+  showList,
+}: {
+  pr: string;
+  checked: boolean;
+  handleDelete: (id: number) => void;
+  id: number;
+  fn: (id: number, state: boolean) => void;
+  showList: string;
+}) {
+  //const { pr, checked, handleDelete, id, fn, showList } = props;
+  //console.log({ pr, checked, handleDelete, id, fn, showList });
+
+  const { attributes, listeners, setNodeRef, transform, transition } =
+    useSortable({ id: id });
+
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+  };
+
+  const [ch, setCh] = useState(checked);
+
+  function handleChecked() {
+    fn(id, !ch);
+    setCh((prev) => !prev);
+  }
+
+  let checkActive =
+    showList === "All" || (showList === "Active" && ch === false);
+  let checkInactives = showList === "Completed" && ch;
+
+  return (
+    <div
+      ref={setNodeRef}
+      style={style}
+      {...attributes}
+      {...listeners}
       className={`
     ${checkInactives ? "" : checkActive ? "" : "hidden"}
     flex p-4 border-b border-b-primary-gray-300`}
