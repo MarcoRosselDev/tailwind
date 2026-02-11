@@ -6,6 +6,7 @@ import {
   PointerSensor,
   useSensor,
   useSensors,
+  type DragEndEvent,
 } from "@dnd-kit/core";
 import {
   arrayMove,
@@ -98,8 +99,21 @@ function App() {
     }
   }, []);
 
-  const sensors = useSensors(
+  /* const sensors = useSensors(
     useSensor(PointerSensor),
+    useSensor(KeyboardSensor, {
+      coordinateGetter: sortableKeyboardCoordinates,
+    }),
+  ); */
+  const sensors = useSensors(
+    useSensor(PointerSensor, {
+      // Configurar el sensor para ignorar elementos interactivos
+      activationConstraint: {
+        distance: 5, // Mínimo 5px de movimiento antes de activar el drag
+        // Ignorar elementos con estas clases o atributos
+        ignore: ['input', 'button', 'textarea', 'select', 'option'],
+      },
+    }),
     useSensor(KeyboardSensor, {
       coordinateGetter: sortableKeyboardCoordinates,
     }),
@@ -146,23 +160,42 @@ function App() {
   }
 
   function handleDelete(id: number) {
-    let indexToRemove = data.findIndex((el: { id: number }) => el.id === id);
-    if (indexToRemove !== -1) {
-      let tx = [...data];
-      tx.splice(indexToRemove, 1);
-      setData(tx);
-      setLocalStorageData(tx);
-    }
+    setData((prev: any) => {
+      let indexToRemove = data.findIndex((el: { id: number }) => el.id === id);
+      console.log(indexToRemove);      
+      if (indexToRemove !== -1) {
+        let tx = [...data];
+        tx.splice(indexToRemove, 1);
+        setLocalStorageData(tx);
+        return tx;
+      } else {
+        return prev
+      }
+
+    })
   }
 
   function handleStateCheck(id: number, state: boolean) {
     setData((prev: any) => {
       let tx = [...prev];
+      //console.log(tx);
+      let index = tx.findIndex((item) => item.id === id);
+      tx[index].checked = state;
+      console.log(index, tx[index].id , id, tx[index]);
+      setLocalStorageData(tx)
+
+      return tx;
+
+      /* let tx = [...prev];
       let index = tx.findIndex((el) => el.id === id);
       tx[index].checked = state;
+      console.log("hi");
+
+      console.log(index, tx[index], id); */
+
       //console.log("on handleStateCheck", tx);
-      setLocalStorageData(tx);
-      return tx;
+      /* setLocalStorageData(tx);
+      return tx; */
     });
   }
 
@@ -181,20 +214,24 @@ function App() {
     });
   }
 
-  function handleDragEnd(event) {
+  function handleDragEnd(event: DragEndEvent) {
+    if (!event || !event.over) {
+      return
+    }
     const { active, over } = event;
     //console.log(event);
 
     if (active.id !== over.id) {
-      setData((items) => {
+      setData((items: any) => {
         //const oldIndex = items.indexOf(active.id);
-        const oldIndex = items.findIndex((item) => item.id === active.id);
+        const oldIndex = items.findIndex((item: any) => item.id === active.id);
         //const newIndex = items.indexOf(over.id);
-        const newIndex = items.findIndex((item) => item.id === over.id);
+        const newIndex = items.findIndex((item : any) => item.id === over.id);
 
-        return arrayMove(items, oldIndex, newIndex);
+        let data = arrayMove(items, oldIndex, newIndex);
+        setLocalStorageData(data);
+        return data;
       });
-      setLocalStorageData(data);
     }
   }
 
@@ -360,67 +397,110 @@ function App() {
 
 export default App;
 
-function Task({
-  pr,
-  checked,
-  handleDelete,
-  id,
-  fn,
-  showList,
-}: {
+function Task({ pr, checked, handleDelete, id, fn, showList, onInteractiveClick }: {
   pr: string;
   checked: boolean;
   handleDelete: (id: number) => void;
   id: number;
   fn: (id: number, state: boolean) => void;
   showList: string;
+  onInteractiveClick?: (e: React.MouseEvent) => void;
 }) {
+
   const [ch, setCh] = useState(checked);
 
-  function handleChecked() {
-    fn(id, !ch);
-    setCh((prev) => !prev);
+  useEffect(() => {
+    setCh(checked);
+  }, [checked]);
+
+  function handleChecked(e: React.ChangeEvent<HTMLInputElement>) {
+    e.stopPropagation();
+    
+    // Usar el nuevo estado inmediatamente
+    const newState = e.target.checked;
+    setCh(newState);
+    fn(id, newState);
+    
+    if (onInteractiveClick) {
+      // Necesitamos crear un evento de mouse para onInteractiveClick
+      const mouseEvent = e as unknown as React.MouseEvent;
+      onInteractiveClick(mouseEvent);
+    }
   }
 
-  let checkActive =
+  function handleDeleteClick(e: React.MouseEvent) {
+    e.stopPropagation();
+    e.preventDefault();
+    handleDelete(id);
+    if (onInteractiveClick) {
+      onInteractiveClick(e);
+    }
+  }
+
+  const checkActive =
     showList === "All" || (showList === "Active" && ch === false);
-  let checkInactives = showList === "Completed" && ch;
+  const checkInactives = showList === "Completed" && ch;
 
   return (
     <div
       className={`
-    ${checkInactives ? "" : checkActive ? "" : "hidden"}
-    flex p-4 border-b border-b-primary-gray-300`}
+        ${checkInactives ? "" : checkActive ? "" : "hidden"}
+        flex p-4 border-b border-b-primary-gray-300
+      `}
+      onMouseDown={(e) => {
+        // Solo permitir drag si se hace click en áreas no interactivas
+        const target = e.target as HTMLElement;
+        if (target.tagName === 'INPUT' || target.tagName === 'BUTTON' || target.closest('button')) {
+          e.preventDefault();
+        }
+      }}
     >
       <input
         type="checkbox"
-        className="
-        appearance-none w-5 h-5 rounded-full border border-gray-300 
-        checked:bg-[url('/images/icon-check.svg'),linear-gradient(330deg,#a465c6,#62abff)]
-        bg-center bg-no-repeat
-        focus:outline-none 
-        transition-colors
-        duration-200
-        cursor-pointer
-        focus:border-primary-gray-600"
-        name=""
-        id=""
+        name={`checkbox-${id}`}
+        id={`checkbox-${id}`}
         checked={ch}
-        onChange={handleChecked}
+        onChange={handleChecked}  // Cambiado de onClick a onChange
+        className="
+          appearance-none w-5 h-5 rounded-full border border-gray-300 
+          checked:bg-[url('/images/icon-check.svg'),linear-gradient(330deg,#a465c6,#62abff)]
+          bg-center bg-no-repeat
+          focus:outline-none 
+          transition-colors
+          duration-200
+          cursor-pointer
+          focus:border-primary-gray-600
+        "
+        onMouseDown={(e) => {
+          e.stopPropagation();
+          if (onInteractiveClick) {
+            onInteractiveClick(e);
+          }
+        }}
+        // También añadir onClick para compatibilidad (opcional)
+        onClick={(e) => e.stopPropagation()}
       />
       <div className="ml-3 flex w-full justify-between">
         <p
-          className={`font-josefine-400  font-semibold
-          ${ch ? "text-primary-gray-300 line-through decoration-primary-gray-600" : "text-primary-gray-600"}
-          
+          className={`font-josefine-400 font-semibold
+            ${ch ? "text-primary-gray-300 line-through decoration-primary-gray-600" : "text-primary-gray-600"}
           `}
         >
           {pr}
         </p>
-        <button className="cursor-pointer" onClick={() => handleDelete(id)}>
+        <button 
+          className="cursor-pointer" 
+          onClick={handleDeleteClick}
+          onMouseDown={(e) => {
+            e.stopPropagation();
+            if (onInteractiveClick) {
+              onInteractiveClick(e);
+            }
+          }}
+        >
           <img
             src="/images/icon-cross.svg"
-            className=" w-3.5 h-3.5"
+            className="w-3.5 h-3.5"
             alt="icon of a cross"
           />
         </button>
@@ -432,86 +512,46 @@ function Task({
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 
-function SortableItem({
-  pr,
-  checked,
-  handleDelete,
-  id,
-  fn,
-  showList,
-}: {
-  pr: string;
-  checked: boolean;
-  handleDelete: (id: number) => void;
-  id: number;
-  fn: (id: number, state: boolean) => void;
-  showList: string;
-}) {
-  //const { pr, checked, handleDelete, id, fn, showList } = props;
-  //console.log({ pr, checked, handleDelete, id, fn, showList });
-
-  const { attributes, listeners, setNodeRef, transform, transition } =
-    useSortable({ id: id });
+function SortableItem({ pr, checked, handleDelete, id,fn, showList }:{ 
+    pr: string;
+    checked: boolean;
+    handleDelete: (id: number) => void;
+    id: number;
+    fn: (id: number, state: boolean) => void;
+    showList: string;
+  }) 
+  {
+  const { attributes, listeners, setNodeRef, transform, transition , isDragging } = useSortable({ id: id , disabled: false});
 
   const style = {
     transform: CSS.Transform.toString(transform),
     transition,
+    opacity: isDragging ? 0.5 : 1,
   };
 
-  const [ch, setCh] = useState(checked);
+  const handleInteractiveElementClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    e.preventDefault();
+  };
+
+  /* const [ch, setCh] = useState(checked);
 
   function handleChecked() {
     fn(id, !ch);
     setCh((prev) => !prev);
+    console.log(ch);
   }
 
   let checkActive =
     showList === "All" || (showList === "Active" && ch === false);
   let checkInactives = showList === "Completed" && ch;
-
+ */
   return (
-    <div
-      ref={setNodeRef}
-      style={style}
-      {...attributes}
-      {...listeners}
-      className={`
-    ${checkInactives ? "" : checkActive ? "" : "hidden"}
-    flex p-4 border-b border-b-primary-gray-300`}
-    >
-      <input
-        type="checkbox"
-        className="
-        appearance-none w-5 h-5 rounded-full border border-gray-300 
-        checked:bg-[url('/images/icon-check.svg'),linear-gradient(330deg,#a465c6,#62abff)]
-        bg-center bg-no-repeat
-        focus:outline-none 
-        transition-colors
-        duration-200
-        cursor-pointer
-        focus:border-primary-gray-600"
-        name=""
-        id=""
-        checked={ch}
-        onChange={handleChecked}
-      />
-      <div className="ml-3 flex w-full justify-between">
-        <p
-          className={`font-josefine-400  font-semibold
-          ${ch ? "text-primary-gray-300 line-through decoration-primary-gray-600" : "text-primary-gray-600"}
-          
-          `}
-        >
-          {pr}
-        </p>
-        <button className="cursor-pointer" onClick={() => handleDelete(id)}>
-          <img
-            src="/images/icon-cross.svg"
-            className=" w-3.5 h-3.5"
-            alt="icon of a cross"
-          />
-        </button>
-      </div>
+    <div ref={setNodeRef} style={style} {...attributes} {...listeners} className="sortable-item" >
+      <Task  checked={checked} fn={fn} handleDelete={handleDelete} id={id} pr={pr} showList={showList} key={id} onInteractiveClick={handleInteractiveElementClick} />
     </div>
   );
 }
+
+
+
