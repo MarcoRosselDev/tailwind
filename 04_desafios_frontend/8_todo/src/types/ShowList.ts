@@ -1,0 +1,1 @@
+export type ShowList = "All" | "Active" | "Completed"
