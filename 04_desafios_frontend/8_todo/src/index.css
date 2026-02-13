@@ -37,4 +37,7 @@
   /* fonts */
   --font-josefine-400: "josefinSans";
  /*  --font-josefine-400: "Josefin Sans", sans-serif; */
+
+ /* breakpoint */
+  --breakpoint-mobile: 384px;
 }

@@ -39,7 +39,7 @@ export default function Formulario({idCounter, handleCount, data, setLocalStorag
       <form
         ref={formulario}
         className=" bg-primary-gray-50 p-4 flex
-      gap-3 rounded-sm items-center h-13"
+      gap-3 rounded-sm items-center h-13 dark:bg-primary-navy-900"
         onSubmit={handleSubmit}
       >
         <input
@@ -51,16 +51,23 @@ export default function Formulario({idCounter, handleCount, data, setLocalStorag
           bg-center bg-no-repeat
           focus:outline-none 
           transition-colors
+          dark:border-primary-navy-850
           duration-200
           cursor-pointer
-          focus:border-primary-gray-600"
+          focus:border-primary-gray-600
+          "
         />
         <input
           type="text"
           name="task"
           id=""
           placeholder="Create a new todo..."
-          className="bg-primary-gray-50 w-full"
+          className="bg-primary-gray-50 w-full dark:bg-primary-navy-900
+          dark:placeholder:text-primary-gray-600
+          focus:outline-none
+          text-primary-gray-600 font-semibold
+          caret-blue-500 dark:caret-blue-400
+          "
         />
       </form>
     </div>

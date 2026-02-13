@@ -1,8 +1,9 @@
 import type { Clear_type } from "../types/Clear_type";
 import type { Data } from "../types/Data";
+import List_toggle from "./List_toggle";
 
 
-export default function Clear_completed({data, setLocalStorageData, handleSetData}: Clear_type) {
+export default function Clear_completed({data, setLocalStorageData, handleSetData, showList, handleSetShowList}: Clear_type) {
   function handleDeleteCompleted() {
     let new_data : Data = []
 
@@ -19,12 +20,15 @@ export default function Clear_completed({data, setLocalStorageData, handleSetDat
   return (
     <div
       className="flex p-4  justify-between
-    text-primary-gray-600 
+    text-gray-400 font-bold  dark:text-primary-navy-850 
     "
     >
       <p>{data.length} items left</p>
+      <div className="hidden sm:block">
+      <List_toggle showList={showList} handleSetShowList={handleSetShowList} />
+      </div>
       <button className="cursor-pointer" onClick={handleDeleteCompleted}>
-        clear Completed
+        Clear Completed
       </button>
     </div>
   )

@@ -146,42 +146,50 @@ export default function App () {
 
   function handleStateCheck(id: number) {
     let prev = [...data]
-    let index = prev.findIndex((item) => item.id === id);
-    
-    console.log({id, "id del prev:": prev[index].id , "index:": index, "estado anterior:": prev[index].checked});
-    prev[index].checked = !prev[index].checked;
-    console.log("estado despues:", prev[index].checked);
-    
-    //console.log(prev[index], id);
-    
+    let index = prev.findIndex((item) => item.id === id);    
+    prev[index].checked = !prev[index].checked;    
     setData(prev)
     setLocalStorageData(prev)
   }
 
   return (
-  <div className="min-h-dvh bg-primary-gray-100 text-[12px] font-josefine-400">
+  <div className="min-h-dvh bg-primary-gray-100 text-[12px] font-josefine-400 w-full ">
     <div
       className="
+      relative  
+      overflow-x-hidden
       bg-[url(/images/bg-mobile-light.jpg)]
       dark:bg-[url(/images/bg-mobile-dark.jpg)]
-      p-6 pt-9 bg-no-repeat min-h-dvh dark:bg-primary-navy-950 text-center"
+      p-6 pt-9 bg-no-repeat min-h-dvh dark:bg-primary-navy-950 text-center
+      mobile:bg-[url(/images/bg-desktop-light.jpg)] mobile:dark:bg-[url(/images/bg-desktop-dark.jpg)]
+
+      grid place-items-center
+      w-full
+      "
     >
+      <div className="mobile:max-w-125 w-full ">
+
+      
       <Header />
       <Formulario  idCounter={idCounter}  handleCount={handleCount} data={data} setLocalStorageData={setLocalStorageData} handleSetData={handleSetData} />
       <div
           className="mt-3 bg-primary-gray-50 
-           rounded-sm items-center"
+           rounded-sm items-center
+           dark:bg-primary-navy-900
+           "
         >
         <DndContext
           sensors={sensors}
           collisionDetection={closestCenter}
           onDragEnd={handleDragEnd}
+          /* autscroll false soluciona el problema de arrastar un elemento arrastrable por fuera de la pantalla
+          que generaba un ensanchamento de la pantalla */
+          autoScroll={false}
         >
           <SortableContext
             items={data}
             strategy={verticalListSortingStrategy}
-          >
-            {data.map(
+          >    {data.map(
               ({pr,checked,id }: { pr: string ,checked: boolean ,id: number }) => {
                 /* const checkActive = showList === "All" || (showList === "Active" && checked === false);
                 const checkInactives = showList === "Completed" && checked; */
@@ -193,14 +201,17 @@ export default function App () {
             )}
           </SortableContext>
         </DndContext>
+      <Clear_completed data={data} handleSetData={handleSetData} setLocalStorageData={setLocalStorageData} handleSetShowList={handleSetShowList} showList={showList} />
       </div>
-      <Clear_completed data={data} handleSetData={handleSetData} setLocalStorageData={setLocalStorageData} />
-      <List_toggle showList={showList} handleSetShowList={handleSetShowList} />
+      <div className="sm:hidden">
+        <List_toggle showList={showList} handleSetShowList={handleSetShowList} />
+      </div>
     
 
-      <h2 className="mt-9 mb-8 text-gray-400 font-semibold">
+      <h2 className="mt-9 mb-8 text-gray-400 font-semibold dark:text-primary-navy-850">
         Drag and drop to reorder list
       </h2>
+      </div>
     </div>
   </div>
   )

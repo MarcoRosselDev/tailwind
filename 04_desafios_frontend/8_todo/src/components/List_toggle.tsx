@@ -7,6 +7,9 @@ export default function List_toggle({showList, handleSetShowList}: List_toggle) 
       className="mt-3 bg-primary-gray-50 
         rounded-sm items-center p-4 flex justify-center gap-5
         font-bold text-primary-gray-600
+        dark:bg-primary-navy-900
+        dark:text-primary-navy-850
+        sm:p-0
         "
     >
       <button

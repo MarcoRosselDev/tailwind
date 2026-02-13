@@ -41,6 +41,7 @@ export default function Task({ prass, checked, handleDelete, id, handleStateChec
       className={`
         ${checkInactives ? "" : checkActive ? "" : "hidden"}
         flex  border-b border-b-primary-gray-300  w-full p-4
+        dark:border-b-primary-navy-850 group
       `}
       onMouseDown={(e) => {
         // Solo permitir drag si se hace click en áreas no interactivas
@@ -65,6 +66,8 @@ export default function Task({ prass, checked, handleDelete, id, handleStateChec
           duration-200
           cursor-pointer
           focus:border-primary-gray-600
+          dark:focus:border-primary-navy-850
+          dark:border-primary-navy-850
         "
         onMouseDown={(e) => {
           e.stopPropagation();
@@ -75,16 +78,21 @@ export default function Task({ prass, checked, handleDelete, id, handleStateChec
         // También añadir onClick para compatibilidad (opcional)
         onClick={(e) => e.stopPropagation()}
       />
-      <div className="ml-3 flex w-full justify-between">
+      <div className="ml-3 flex w-full justify-between relative ">
         <p
           className={`font-josefine-400 font-semibold
-            ${checked ? "text-primary-gray-300 line-through decoration-primary-gray-600" : "text-primary-gray-600"}
+            ${checked ? "text-primary-gray-300 line-through decoration-primary-gray-600 dark:text-primary-navy-850" : "text-primary-gray-600"}
           `}
         >
           {prass}
         </p>
         <button 
-          className="cursor-pointer" 
+          className="
+          absolute right-0 inset-y-0
+          w-12 
+          flex items-center justify-end
+          cursor-pointer
+          "
           onClick={handleDeleteClick}
           onMouseDown={(e) => {
             e.stopPropagation();
@@ -95,7 +103,7 @@ export default function Task({ prass, checked, handleDelete, id, handleStateChec
         >
           <img
             src="/images/icon-cross.svg"
-            className="w-3.5 h-3.5"
+            className="w-3.5 h-3.5 opacity-0 group-hover:opacity-100 transition-opacity duration-200"
             alt="icon of a cross"
           />
         </button>

@@ -16,7 +16,7 @@ function Sortable_item ({ prass, checked, handleDelete, id, handleStateCheck, sh
     e.preventDefault();
   };
   return (
-    <div ref={setNodeRef} style={style} {...attributes} {...listeners} className="sortable-item w-full" >
+    <div ref={setNodeRef} style={style} {...attributes} {...listeners} className="sortable-item w-full bg-primary-gray-50 hover:cursor-grab rounded-2xl dark:bg-primary-navy-900" >
       <Task  checked={checked} handleStateCheck={handleStateCheck} handleDelete={handleDelete} id={id} prass={prass} showList={showList} key={id} onInteractiveClick={handleInteractiveElementClick} />
     </div>
   )
