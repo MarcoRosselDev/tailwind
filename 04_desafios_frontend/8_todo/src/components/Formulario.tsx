@@ -58,6 +58,7 @@ export default function Formulario({idCounter, handleCount, data, setLocalStorag
           "
         />
         <input
+          autoComplete="off"
           type="text"
           name="task"
           id=""

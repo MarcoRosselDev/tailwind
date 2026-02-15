@@ -131,7 +131,6 @@ export default function App () {
   function handleDelete(id: number) {
     setData((prev: any) => {
       let indexToRemove = data.findIndex((el: { id: number }) => el.id === id);
-      console.log(indexToRemove);      
       if (indexToRemove !== -1) {
         let tx = [...data];
         tx.splice(indexToRemove, 1);
@@ -153,21 +152,21 @@ export default function App () {
   }
 
   return (
-  <div className="min-h-dvh bg-primary-gray-100 text-[12px] font-josefine-400 w-full ">
+  <div className="min-h-dvh bg-primary-gray-100 text-[12px] font-josefine-400 w-full border-red-400">
     <div
       className="
-      relative  
+      relative
       overflow-x-hidden
       bg-[url(/images/bg-mobile-light.jpg)]
       dark:bg-[url(/images/bg-mobile-dark.jpg)]
       p-6 pt-9 bg-no-repeat min-h-dvh dark:bg-primary-navy-950 text-center
       mobile:bg-[url(/images/bg-desktop-light.jpg)] mobile:dark:bg-[url(/images/bg-desktop-dark.jpg)]
-
+      bg-top
       grid place-items-center
       w-full
       "
     >
-      <div className="mobile:max-w-125 w-full ">
+      <div className="mobile:max-w-125 w-full">
 
       
       <Header />
