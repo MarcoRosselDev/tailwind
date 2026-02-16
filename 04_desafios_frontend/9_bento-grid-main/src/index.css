@@ -1,1 +1,29 @@
 @import "tailwindcss";
+
+@font-face {
+  font-family: "DMSans";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/static/DMSans-Regular.ttf") format("woff2");
+}
+@font-face {
+  font-family: "DMSans-italic";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/DMSans-Italic-VariableFont_opsz\,wght.ttf") format("woff2");
+}
+
+@theme {
+  --font-dmsans: "DMSans", sans-serif;
+  --font-dmsans-italic: "DMSans-italic", sans-serif;
+  --color-pr-purple-100: hsl(254, 88%, 90%);
+  --color-pr-purple-500: hsl(256, 67%, 59%);
+  --color-pr-yellow-100: hsl(31, 66%, 93%);
+  --color-pr-yellow-500: hsl(39, 100%, 71%);
+  --color-pr-white: hsl(0, 0%, 100%);
+  --color-pr-black: hsl(0, 0%, 7%);
+  --color-pr-white-200: hsl(0deg 0% 94.54%);
+  --color-pr-white-400: hsl(0deg 0% 99.95%);
+}
