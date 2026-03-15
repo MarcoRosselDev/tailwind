@@ -2,26 +2,33 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
-
-/* @font-face {
-  font-family: "Bricolage";
-  src: url("/fonts/Bricolage_Grotesque/BricolageGrotesque-VariableFont_opsz\,wdth\,wght.ttf")
-    format("truetype");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-} */
-
-
 @font-face {
   font-family: "nunito-variable";
   src: url("/fonsts/Nunito_Sans/NunitoSans-VariableFont_YTLC\,opsz\,wdth\,wght.ttf")
     format("truetype");
-  font-weight: 700;
+  font-weight: 300;
   font-style: normal;
   font-display: swap;
 }
+@font-face {
+  font-family: "nunito-italic";
+  src: url("/fonsts/Nunito_Sans/NunitoSans-Italic-VariableFont_YTLC\,opsz\,wdth\,wght.ttf")
+    format("truetype");
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
 
 @theme {
-  --font-nunito-variable: "nunito-variable"; 
+  --font-nunito-variable: "nunito-variable";
+  --font-nunito-italic: "nunito-italic";
+
+  --color-primary-blue-900: hsl(209, 23%, 22%);
+  --color-primary-blue-950: hsl(207, 26%, 17%);
+  --color-primary-grey-950: hsl(200, 15%, 8%);
+  --color-primary-grey-400: hsl(0, 0%, 50%);
+  --color-primary-grey-50: hsl(0, 0%, 99%);
+  --color-primary-blue-900: hsl(209, 23%, 22%);
+  --color-primary-white: hsl(0, 100%, 100%);
 }
