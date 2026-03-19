@@ -1,5 +1,6 @@
 import { useState, type FormEvent } from "react"
 import Header from "./components/Header"
+import Region_var from "./components/Region_var";
 
 function App() {
 
@@ -20,16 +21,7 @@ function App() {
           className="p-4 border w-full"
           />
         </form>
-        <div>
-          <h1>Filter by Region</h1>
-          <ul>
-            <li>Africa</li>
-            <li>America</li>
-            <li>Asia</li>
-            <li>Europa</li>
-            <li>Oceania</li>
-          </ul>
-        </div>
+        <Region_var />
       </div>
       <p>{char}</p>
     </div>
