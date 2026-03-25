@@ -11,11 +11,16 @@ import Banderas from "./components/Banderas";
 
 function App() {
 
-  const [char, setChar] = useState("")
+  const [country, setCountry] = useState("")
+
+  function handleChange(e:string) {
+    setCountry(e)
+  }
 
   function handleSubmit(event:FormEvent) {
     event.preventDefault();
-    console.log(char);
+    console.log(country);
+    setCountry("")
   }
 
   return (
@@ -26,11 +31,13 @@ function App() {
           <input type="text"
           placeholder="Search for a country..." 
           className="p-4 border w-full"
+          onChange={e => handleChange(e.target.value)}
           />
         </form>
         <Region_var />
         <Banderas />
       </div>
+        {country}
       
     </div>
   )

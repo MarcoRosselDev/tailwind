@@ -1,10 +1,10 @@
 import data from './../data.json'
 
 export default function Banderas() {
-  console.log(data);
+  //console.log(data);
   return (
     <div>
-      {data.toString()}
+      {/* {data.toString()} */}
     </div>
   )
 }
