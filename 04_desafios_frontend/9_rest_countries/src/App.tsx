@@ -21,6 +21,7 @@ function App() {
     event.preventDefault();
     console.log(country);
     setCountry("")
+    event.target
   }
 
   return (
