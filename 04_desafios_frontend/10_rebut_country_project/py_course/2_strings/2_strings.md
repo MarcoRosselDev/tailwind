@@ -103,3 +103,80 @@ greeting[0] = 'H' # TypeError: 'str' object does not support item assignment
 
 Ejemplo de otro tipo de dato inmutable en python son los enteros, flotantes, booleanos, tuplas y rangos.
 Conoseremos cada uno en futuras lecciones.
+
+# 4 que son las concatenaciones y interpolaciones de strings ? 
+
+cuando trabajamos con strings, conbinar distintas piezas de texto juntas es una operacion comun que te encontraras trabajando.
+
+En python, tu puedes convinar multiples strings juntos con el operador +.
+Este proceso se llama concatenacion de strings.
+Asi se concatenan dos strings:
+
+``````python
+my_str_1 = 'Hello'
+my_str_2 = "World"
+
+str_plus_str = my_str_1 + ' ' + my_str_2
+print(str_plus_str) # Hello World
+``````
+
+Pero nota que aqui solo trabajamos con strings.
+Si tratas de concatenar strings con numeros, tendras un TypeError:
+
+``````python
+name = 'John Doe'
+age = 26
+
+name_and_age = name + age
+print(name_and_age) # TypeError: can only concatenate str (not "int") to str
+``````
+
+Esto pasa porque python no convierte automaticamente otros tipos de datos como
+enteros en strings cuando los concatenas.
+Python requiere que todos los elementos sean strings antes de que sean concatenados.
+Para arreglar eso, puedes convertir el numero en strigs con la funcion built-in str(),
+que retorna la representacion en string del objeto dado sin modificar el objeto original.
+
+``````python
+name = 'John Doe'
+age = 26
+
+name_and_age = name + str(age)
+print(name_and_age) # John Doe26
+``````
+
+Puedes usar tambien el operador de asignacion aumentado para concatenar.
+Esto se representa con el signo +=, y realiza tanto la concatenacion como la asignacion
+en un solo paso. Aqui esta en accion:
+
+``````python
+name = 'John Doe'
+age = 26
+
+name_and_age = name  # Start with the name
+name_and_age += str(age)  # Append the age as string
+
+print(name_and_age)  # John Doe26
+``````
+
+El proceso de insertar variables y expresiones dentro de un stirng se llama interpolacion de string.
+Python tiene una categoria de string llamada f-string (abrebiacion de formatted string literals o formateador de literales de string), que nos  ayuda a manejar interpolaciones con una sintaxis compacata y lejible.
+
+F-strings comienzan con una f (puedes ser en mayuscula o minuscula) antes de las comillas,
+y nos ayudan a insertar variables o expresiones dentro de los curly braces {}.
+Aqui un ejemplo:
+
+``````python
+name = 'John Doe'
+age = 26
+name_and_age = f'My name is {name} and I am {age} years old'
+print(name_and_age) # My name is John Doe and I am 26 years old
+
+num1 = 5
+num2 = 10
+print(f'The sum of {num1} and {num2} is {num1 + num2}') # The sum of 5 and 10 is 15
+``````
+
+Nota como tu no necesitas convertir a strigs los objetos con la funcion str().
+En el ejemplo arriba, el valor de age, num1, y num2 se convierten bajo el capo en un
+strig durante la proceso de interpolacion.
