@@ -1,0 +1,1 @@
+# 1 que es el scope en python y como funciona ?
