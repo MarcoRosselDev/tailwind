@@ -61,3 +61,59 @@ Dentro de él, la tabla tiene
 un elemento de "head", ="thead", 
 un elemento de "body", ="tbody", 
 y un elemento de "foot" de tabla, ="tfoot".
+
+La elementos tabla head, body, y foot pueden cada uno contener alugnos numeros de filas, "tr".
+Y cada "fila=row" puede contener un "header=th" el cual etiqueta los datos en esa fila.
+El puede contener tambien algunos numeros de celdas de datos, llamados tabla de datos, "td".
+
+Ahora, ese es un monton de elementos HTML.
+Pero no te intimides - Este sigue una simple jerarquia.
+Aqui una tabla simple que podemos crear que incluye todos estos elementos:
+
+```html
+<table>
+  <thead>
+    <tr>
+      <th>The title of this table</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>First Row</th>
+      <td>
+        First Data Cell
+      </td>
+    </tr>
+    <tr>
+      <th>Second Row</th>
+      <td>
+        Second Data Cell
+      </td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <th>The footer of this table, which might contain date of publication, author credits, or other meta information.</th>
+    </tr>
+  </tfoot>
+</table>
+```
+
+Como puedes ver, el dato en si es siempre dentro de un "tr" - y dentro de ese elemento "tr"
+un elemento "th" con un header, y un elemento "td" con datos.
+
+Algunos sitios web escoguen usar "div"s para contruit sus propias tablas en lugar
+de usar elementos table mas apropiados.
+
+Mientras que es posible deplegar datos tabulados usando elementos div genericos,
+sigue siendo mejor usar los elementos table en su lugar.
+
+Muchos años atras, desarrolladores consideraban usar una tabla para posicionar 
+elementos no-data en una webpage.
+Esto nunca fue considerado una buena practica. Pero tu puedes encontrar algunas bases de codigo
+donde las tablas siguen siendo usados asi.
+
+En estos dias, los desarrolladores usan CSS flexbox y grid para diseñar sus diseños.
+Freecodecamp cubrira estas herramientas en profundidad tarde.
+
+Por ahora, solo usa tablas HTML para su propósito original previsto: mostrar datos tabulares.
