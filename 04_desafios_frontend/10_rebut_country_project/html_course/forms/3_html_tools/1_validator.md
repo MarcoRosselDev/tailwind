@@ -64,3 +64,4 @@ Otro validador HTML que puedes usar es jsonformatter.org.
 
 Puedes copiar y pegar tu codigo HTML dentro del primer editor,
 y cuando clikeas en el boton "Validate", te mostrara cualqueir error que tengas en tu codigo.
+

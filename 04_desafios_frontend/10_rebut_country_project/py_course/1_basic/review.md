@@ -293,4 +293,146 @@
   asignacion en un solo paso.
   Este toma una variable, aplica una operacion a este con otra variable,
   y lo guarda devuelta en la misma variable.
-  
+
+  Existen otros operadores de asignacion aumentada, como los operadores
+  bit a bit.
+  Ellos incluyen "&=", "^=", ">>=", y "<<=".
+
+## Trabajando con funciones
+
+- Definicion:
+  Las funciones son piezas de codigo reutilizables que toman inputs (argumentos)
+  y retorna un output.
+  Para llamar una funcion, necesitas referenciarla con un nombre seguido de
+  un par de parentecis "()"
+
+  Si una funcion no retorna un valor, el valor por defecto retorna None.
+
+  Tambien puedes suplir valores de parametros con parametros por defecto, asi:
+
+  ```python
+  def get_sum(num_1, num_2=2):
+    return num_1 + num_2
+
+  result = get_sum(3) 
+  print(result) # 5
+  ```
+
+  Si llamas una funcion con la cantidad incorrecta de argumentos, resiviras
+  un "TypeError"
+
+## Funciones buit-in comunes
+
+- Funcion input():
+  Este es usado para resivir un input del usuario por consola.
+
+- Funcion int():
+  Se utiliza para convertir un numero, boolean, o string numerico en integer:
+
+## Scope en Python
+
+- Local scope:
+  Esto es cuando una variable declarada dentro de una funcion o clase puede
+  ser solo accedida dentro de esa fucion o clase.
+
+- Enclosing scope:
+  Esta es cuando una funcion que esta encadenada dentro de otra fucion puede
+  acceder a variables de la fucion que la encierra.
+
+- Global scope:
+  Esta refiere a variables que son declaradas fuera de cualquier funcion o clase
+  que puede ser accedida en cualquier programa.
+
+- build-in scope:
+  Palabras reservadas en python para funciones predefinidas,
+  modulos, palabras clave, o objetos.
+
+## Operadores de comparacion
+
+- Equal (==):
+  revisa si dos valores son iguales.
+
+- Not equal (!=):
+  revisa si dos valore no son iguales.
+
+- Estrictamente mayor que (>):
+  revisa si un valor es mayor que otro.
+
+- Estrictamente menor que (>):
+  revisa si un valor es menor que otro.
+
+- Mayor o igual que (>=):
+  revisa si un valor es mayor o igual que otro.
+
+- Menor o igual que (<=):
+  revisa si un valor es menor o igual que otro.
+
+## Trabajando con delaraciones if, elif, y else
+
+- if:
+  Estas son condiciones usadas para determinar si algo es True o no.
+  Si una condicion evalua True, entonces el bloque de codigo correra.
+
+- elif:
+  Esta es una condicion que biene despues de la declaracion if.
+  Una clausula elif corre solo si todas la condiciones previas evaluan en False
+  y su condicion evalua en True.
+
+- else:
+  Este corre si todas las otras condiciones evaluan en False.
+
+Tambien puedes encadenar declaraciones if dentro de otras declaraciones if.
+
+## Valores Truthy y Falsy
+
+- Definicion:
+  En python, cualquier valor tiene un valor booleano por inercia, o 
+  un sentido built-in de como debe ser tratado como True o False
+  en un contexto logico.
+  Muchos valores son considerados truthy, esto es, se evaluan como True
+  en un contexto logico.
+  Otros son Falsy, aqui unos ejemplos de valores falsy:
+  1. None
+  2. False
+  3. Integer 0
+  4. Float 0.0
+  5. Empty string ''
+
+  Otros valores como enteros distintos de 0 y strings no vacios son 
+  valores truthy.
+
+## Trabajando con la funcion bool()
+
+- Definicion:
+  Si quieres revisar si un valore es truthy o falsy, puedes usar la
+  funcion built-in bool().
+  Esta convierte explicitamente un valor a su equivalente booleano y
+  retorna True para valore truthy y False para los falsy.
+
+## Operadores booleanos y short-circuiting (circuitos cortos)
+
+- Definicion:
+  Estos son operadores especiales que nos ayudan a combinar multiples
+  expresiones para crear deciciones mas complejas y logicas en tu codigo.
+  Estos son los operadores boleanos en python: and, or y not.
+
+- and:
+  Este operador toma dos operadores y retorna el primero operador
+  si es falsy, de lo contrario, retornara el segundo operador.
+  Ambos operadores deberian ser true para una expresion para retornar truthy value.
+
+- or:
+  Este operador retorna el primer operador si es truthy, de lo contrario,
+  retornara el segundo  operador.
+  Una expresion or resulta en un valor truthy si al menos uno de sus operadores
+  es truthy.
+
+- Short-circuiting:
+  Los operadores and y or son conosidos como operadores short-circuit.
+  Short-circuiting significa que Python revisa valores desde la izquierda a
+  derecha y para lo mas rapido posible cuando determina el resultado final.
+
+- not:
+  Este operador toma un operador solitario y lo invierte a su valor booleano.
+  Este convierte valores truthy a False y fasly a True.
+  A diferencia de los operadores previos, not siempre retorna True o False.
