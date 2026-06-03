@@ -23,7 +23,7 @@ developer = 'Jessica'
 list(developer) # ['J', 'e', 's', 's', 'i', 'c', 'a']
 ```
 
-Un iterable es un tipo especial de objeto que puede ser loopeable a trabes
+Un iterable es un tipo especial de objeto que puede ser loopeable a traves
 de un elemento a la vez.
 Aprenderemos sobre loops mas tarde.
 
