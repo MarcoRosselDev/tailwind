@@ -92,3 +92,20 @@ sorted(programming_languages, key=len)
 # ['C++', 'Rust', 'Java', 'Rust', 'Python', 'Python']
 ```
 
+Si necesitas crear una lista de valores en reversa,
+puedes usar el argumento "reverse" asi:
+
+```python
+programming_languages = ('Rust', 'Java', 'Python', 'C++', 'Rust', 'Python')
+
+print(sorted(programming_languages, reverse=True))
+
+# Result
+# ['Rust', 'Rust', 'Python', 'Python', 'Java', 'C++']
+```
+
+Conclucion:
+
+Tuples son un tipo de dato comun en Python.
+Entender como trabajar con el, junto a algunos metodos utiles y funciones,
+nos ayudara a escribir codigo mas eficiente.
