@@ -86,15 +86,44 @@ Pero que tal si necesitas iterar por multiples iterables en paralelo?
 Bueno, entonces puedes usar la funcion zip(), que combina listas en pares de elementos
 y retorna un iterados de tuples.
 
+Si le pasamos una lista de developers y ids a la funcion zip() y convertimos
+su valor de retorno en una lista con la funcion list(), asi es como luciria:
+
 ```python
+developers = ['Naomi', 'Dario', 'Jessica', 'Tom']
+ids = [1, 2, 3, 4]
+
+list(zip(developers, ids))
+# [('Naomi', 1), ('Dario', 2), ('Jessica', 3), ('Tom', 4)]
 ```
+I aqui un ejemplo de uso de la funcion zip() con el bucle for para iterar por
+las listas developer y ids:
+
 ```python
+developers = ['Naomi', 'Dario', 'Jessica', 'Tom']
+ids = [1, 2, 3, 4]
+
+for name, id in zip(developers, ids):
+    print(f'Name: {name}')
+    print(f'ID: {id}')
 ```
-```python
-```
-```python
-```
-```python
-```
-```python
-```
+En este ejemplo, zip() combina las dos listas en pares de elementos y retorna
+un iterador de tuplas.
+Entonces el bucle for desempaca cada tupla en "name" y "id".
+Finalmente, para cada declaracion impresa, estamos imprimiendo cada name y id
+de las listas ids y developers respectivamente.
+Aqui como se ve el resultado en consola:
+
+Name: Naomi
+ID: 1
+Name: Dario
+ID: 2
+Name: Jessica
+ID: 3
+Name: Tom
+ID: 4
+
+## Conclucion
+
+Las funciones enumerate y zip son muy poderosas, y cuando los combinamos con bucles,
+puedes hacer tu codigo mas conciso.
