@@ -134,6 +134,11 @@
   print(isinstance(name, int)) # False
 ```
 
+si lo que quieres es revisar mas de un tipo de dato en la funcion isinstance, do this:
+
+```python
+if isinstance(greeting, (tuple, list)):
+```
 ## Trabajando con strings
 
 - Definicion:
