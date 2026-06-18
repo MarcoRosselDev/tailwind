@@ -67,3 +67,55 @@ la columna (edad y tipo).
   </tbody>
 </table>
 ```
+
+Notece que el codigo de arriba tiene un elemento caption inmediatamente despues
+del elemento de apertura table.
+Entonces, dentro del 'table header' (elemento thead), tiene las columnas headers
+ (Name, Age y Type).
+En la seguna y tercera fila 'rows', dentro del cuerpo de la table (tbody element),
+encontramos la data para cada uno de los animales.
+Los nombres de las mascotas son la fila header porque estan dentro de el 
+elemento encabezado de la table (th).
+
+Asociar la informacion de las celdas con sus encabezados correspondientes es tambien
+muy importante para lectores de pantalla.
+El atributo 'scope' determina si un header es un encabezado de fila o 
+un encabezado de columna.
+Los lectores de pantalla adivinaran esto correctamente por la esctructura de la table,
+pero es usualmente recomendado el indicar explicitamente el 'scope' para 
+asegurar la claridad o entendimineto.
+
+El atributo 'scope' tiene 4 valores posibles.
+Los dos que usaras mas seguido son 'col' por columnas
+y 'row' por filas.
+En el codigo de abajo, puedes ver que agregamos el atributo 'scope'
+a los headers de las columnas y filas.
+Las 3 column headers (Name, Age y Type) tienen un 'scope' de 'col', columna.
+
+Las 2 'row headers' (Nora y Gino) tienen un 'scope' de 'row'.
+
+```HTML
+<table>
+  <caption>Our Pets</caption>
+  <thead>
+    <tr>
+      <!-- Now they have scope -->
+      <th scope="col">Name</th>
+      <th scope="col">Age</th>
+      <th scope="col">Type</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">Nora</th>
+      <td>5</td>
+      <td>Dog</td>
+    </tr>
+    <tr>
+      <th scope="row">Gino</th>
+      <td>2</td>
+      <td>Cat</td>
+    </tr>
+  </tbody>
+</table>
+```
