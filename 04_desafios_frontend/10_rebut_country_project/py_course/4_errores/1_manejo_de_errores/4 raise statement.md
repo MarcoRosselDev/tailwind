@@ -114,3 +114,38 @@ Traceback (most recent call last):
     raise ValueError('Configuration file is missing') from None
 ValueError: Configuration file is missing
 ```
+
+Y "raise ... from e" encadena la nueva excepcion al original,
+preservando el camindo del error:
+
+```py
+Traceback (most recent call last):
+  File "main.py", line 5, in parse_config
+    return int(data)
+           ^^^^^^^^^
+ValueError: invalid literal for int() with base 10: ''
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "main.py", line 12, in <module>
+    config = parse_config('config.txt')
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "main.py", line 9, in parse_config
+    raise ValueError('Invalid configuration format') from e
+ValueError: Invalid configuration format
+```
+
+Tambien puedes lanzar errores condicionalmente usando "assert",
+que es escencialmente una abreviacion de "raise" y "AssertionError":
+
+```py
+def calculate_square_root(number):
+    assert number >= 0, 'Cannot calculate square root of negative number'
+    return number ** 0.5
+
+try:
+    result = calculate_square_root(-4)
+except AssertionError as e:
+    print(f'Assertion failed: {e}')
+```
