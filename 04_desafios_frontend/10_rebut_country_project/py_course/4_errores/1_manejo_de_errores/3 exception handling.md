@@ -40,3 +40,56 @@ else:
 finally:
     print('This block always runs.')
 ```
+
+* 'else':
+    Corre si no se lanza una excepcion el el bloque try.
+* 'finally':
+    Corre no importa que, si ocurra o no una excepcion.
+    util para limpiar tareas como cerrar archivos o limpiar recursos.
+
+Tambien puedes agarrar multiples excepciones con bloques de
+'except' separados:
+
+```py
+try:
+    number = int('abc')
+    result = 10 / number
+except ValueError:
+    print('That was not a valid number.')
+except ZeroDivisionError:
+    print("Can't divide by zero.")
+```
+
+Al usar la declaracion 'except' por separado, puedes
+hacer que tu codigo responda tus errores mas eficientemente y util.
+
+Tambien puedes usar el objeto exception, 
+que es tipicamente aliado con otro nombre con la palabra
+reservada 'as'.
+Aqui estamos usando 'e' como un alias para el object error:
+
+```py
+try:
+    x = 1 / 0
+except ZeroDivisionError as e:
+    print(f'Error occurred: {e}')
+```
+
+Usando 'e' nos deja acceder al mensaje error actual o
+object para depurar o debugiar.
+
+Tambien puedes agarrar multiples excepciones en una sola 'except'
+al especificar la excepcion como una 'tuple':
+
+```py
+try:
+    number = int(input('Enter a number: '))
+    result = 10 / number
+except (ValueError, ZeroDivisionError) as e:
+    print(f'Error occurred: {e}')
+```
+
+El manejo de excepciones o Exception handling permite que tu programa
+se recupere de los errores con gracia.
+Al usar try, except, else y finally, puedes anticipar potenciales
+problemas y construir aplicaciones mas resilientes.
