@@ -1,33 +1,27 @@
 def validate_isbn(isbn, length):
-    #if len(isbn, length) != length:
     if len(isbn) != length:
         print(f'ISBN-{length} code should be {length} digits long.')
         return
-
-    #print(isbn[0:length], isbn[length - 1])
+    main_digits = isbn[0:length-1]
+    given_check_digit = isbn[length-1]
     try:
-        main_digits = isbn[0:length]
-        given_check_digit = isbn[length - 1]
         main_digits_list = [int(digit) for digit in main_digits]
-    except ValueError("Length must be a number."):
+        print(main_digits, given_check_digit, main_digits_list)
+    except ValueError:
+        print("Invalid character was found.")
         raise
-
-    print(main_digits ,main_digits_list, given_check_digit)
-
     # Calculate the check digit from other digits
     if length == 10:
         expected_check_digit = calculate_check_digit_10(main_digits_list)
     else:
         expected_check_digit = calculate_check_digit_13(main_digits_list)
     # Check if the given check digit matches with the calculated check digit
-    print(given_check_digit, expected_check_digit)
+    print(given_check_digit, expected_check_digit, type(given_check_digit), type(expected_check_digit))
     if given_check_digit == expected_check_digit:
         print('Valid ISBN Code.')
     else:
         print('Invalid ISBN Code.')
-
-
-
+        
 def calculate_check_digit_10(main_digits_list):
     # Note: You don't have to fully understand the logic in this function.
     digits_sum = 0
@@ -40,7 +34,6 @@ def calculate_check_digit_10(main_digits_list):
     # If the result is 11, use 0.
     # If the result is 10, use upper case X.
     # Use the value as it is for other numbers.
-    print(result, "we're in calculate 10 fn")
     if result == 11:
         expected_check_digit = '0'
     elif result == 10:
@@ -48,6 +41,7 @@ def calculate_check_digit_10(main_digits_list):
     else:
         expected_check_digit = str(result)
     return expected_check_digit
+
 def calculate_check_digit_13(main_digits_list):
     # Note: You don't have to fully understand the logic in this function.
     digits_sum = 0
@@ -67,6 +61,7 @@ def calculate_check_digit_13(main_digits_list):
     else:
         expected_check_digit = str(result)
     return expected_check_digit
+
 def main():
     try:
         user_input = input('Enter ISBN and length: ')
@@ -79,8 +74,8 @@ def main():
             print('Length should be 10 or 13.')
     except IndexError:
         print("Enter comma-separated values.")
-    except ValueError as v:
-        print(v)
-        #print("Length must be a number.")
+    except ValueError:
+        print("Length must be a number.")
+
 
 main()
