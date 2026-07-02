@@ -57,3 +57,51 @@ Puedes usar el atributo alt en HTML asi:
 
 Ahora que sabes cual es un mal y buen texto alternativo,
 veamos algunas buenas practicas.
+
+* Trata de mantener los textos alternativos cortos. Tendra detalles suficientes si se entiende la imagen pero
+  no tan largo por que se vuelve confuso.
+* No trates de describir cada pequeño detalle. Centrate en lo aspectos mas importantes de la imagen.
+* Generalmente, no necesitas con "imagen of" o "picture of".
+  Solo puedes comenzar describiendolo directamente.
+* Tambien, si hay un texto similar serca de la imagen, no necesitas escribirla denuevo.
+* Es recomendable terniar un texto alterno con un punto para mantener la coherencia.
+* Si la imagen es un link a otra pagina, en lugar de describir la imagen en si, 
+  el texto alternativo debe desribir que ocurrira si el usuario clikea en el.
+
+Por ejemplo, si tu sitio web tiene un icono de flecha que envia al usuario a la siguiente pagina,
+en lugar de escribir en el texto alterno "right arrow", como en este ejemplo,
+donde puedes ver que el texto lterno con esta descripcion:
+
+```html
+<a href="about.html">
+  <img src="arrow-right.png" alt="Right arrow." />
+</a>
+```
+Debes escribir algo asi en su lugar, donde el texto alterno describe que pasaria si
+el usuario clickea en la imagen.
+El iria a la siguiente pagina.
+```html
+<a href="about.html">
+  <img src="arrow-right.png" alt="Go to next page." />
+</a>
+```
+Solo las imagenes que transmitan informacion importante deben contar con texto alterno.
+Si una imagen solo se usa por propositos decorativos, debe tener un texto alternativo null,
+para que pueda ser ignorado por los lectores de pantalla.
+
+Aqui un ejemplo de un texto alteno vacio:
+```html
+<img src="decorative_image.jpg" alt="" />
+```
+Cada imagen en tu sitio web debe tener un texto alterno, incluso si esta vacio.
+si omites al atributo alt, algunos lectores de pantalla leeran el nombre del archivo,
+lo que puede ser distractivo para personas que usan tecnologias de asistencia,
+por lo que esto no es recomendable.
+
+Finalmente, antes de que tu sitio web viva, debes testearlo cuidadosamente por lectores
+de pantalla, para que puedan leer corectamente los textos alternativos.
+
+Escribioendo textos alternativos es esencial para crear contenido web eccesible.
+como desarrollador web, al entregar descipciones claras de tus imagenes, 
+te aseguras que todos pueden conectar con tu sitio web en una experiencia
+online inclusiva.
